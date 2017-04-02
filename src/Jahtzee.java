@@ -2,7 +2,7 @@
 public class Jahtzee {
 
 	public static void main(String[] args) {
-		System.out.println("This class works.");
+		System.out.println("Guys, I think it works.");
 	}
 
 }
