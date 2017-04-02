@@ -4,5 +4,5 @@ Group Project for CPSC 224: Object-Oriented and Event Programming at Gonzaga Uni
 Contributors:
 Trevor Greenside, 
 Harvey Hartwell, 
-Scott Kopcynski, 
+Scott Kopczynski, 
 Carlos Villagomez
