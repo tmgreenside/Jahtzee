@@ -8,27 +8,16 @@ import javax.swing.*;
  * value.
  * @author Trevor Greenside
  * @version Last Changed: 25 March 2017
- * CPSC 224 Assignment 4
  */
 public class Die extends JLabel {
 
 	private static final long serialVersionUID = 1L;
-	private int value;
-	private int maxValue; 
+	private int diceValue;
+	private boolean isKept; 
 	
-	public Die(int maxValue){
-		this.maxValue = maxValue;
+	public Die() {
 		rollDie(); 
-	}
-	
-	/**
-	 * Overloaded constructor in case the caller fails to
-	 * specify a max value. This constructor replaces a
-	 * passed-in max value with the default 6.
-	 */
-	public Die(){
-		this.maxValue = 6;
-		rollDie();
+		isKept = false;
 	}
 	
 	/**
@@ -38,7 +27,7 @@ public class Die extends JLabel {
 	 */
 	public void rollDie() {
 		Random myRoller = new Random();
-		this.value = myRoller.nextInt(maxValue) + 1;
+		this.diceValue = myRoller.nextInt(6) + 1;
 		setImage();
 	}
 	
@@ -46,8 +35,8 @@ public class Die extends JLabel {
 	 * Use the die's value to change the image displayed by
 	 * this object as a JLabel.
 	 */
-	public void setImage() {
-		switch(value) {
+	private void setImage() {
+		switch(diceValue) {
 		case 1:
 			this.setIcon(new ImageIcon("images/dice1.png"));
 			break;
@@ -66,32 +55,32 @@ public class Die extends JLabel {
 		case 6:
 			this.setIcon(new ImageIcon("images/dice6.png"));
 			break;
-		case 7:
-			this.setIcon(new ImageIcon("images/dice7.png"));
-			break;
-		case 8:
-			this.setIcon(new ImageIcon("images/dice8.png"));
-			break;
-		case 9:
-			this.setIcon(new ImageIcon("images/dice9.png"));
-			break;
-		case 10:
-			this.setIcon(new ImageIcon("images/dice10.png"));
-			break;
-		case 11:
-			this.setIcon(new ImageIcon("images/dice11.png"));
-			break;
-		case 12:
-			this.setIcon(new ImageIcon("images/dice12.png"));
-			break;
 		}
 	}
 	
 	/**
-	 * Get the die's value as an integer
+	 * Get the die's value as an integer.
 	 * @return
 	 */
-	public int getValue () {
-		return this.value;
+	public int getSideUp () {
+		return this.diceValue;
+	}
+	
+	/**
+	 * Get the boolean value telling whether this die will
+	 * be rerolled.
+	 * @return
+	 */
+	public boolean getIsKept() {
+		return isKept;
+	}
+	
+	/**
+	 * This method changes the isKept value to the value
+	 * passed in when called.
+	 * @param kept
+	 */
+	public void setIsKept(boolean kept) {
+		isKept = kept;
 	}
 }
