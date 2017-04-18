@@ -3,6 +3,12 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * This class creates the Welcome screen that enables the user
+ * to select the categories before starting a game.
+ * @author Trevor Greenside
+ * @version Last updated: 17 April 2017
+ */
 public class OpenWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private String firstCategory;
