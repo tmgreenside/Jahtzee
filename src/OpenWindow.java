@@ -113,6 +113,10 @@ public class OpenWindow extends JFrame {
 		rules = new RulesWindow();
 	}
 	
+	/**
+	 * If the first and second categories are not identical, this method
+	 * hides this window and creates the main Game window.
+	 */
 	public void startGame() {
 		if (firstCategory.equals(secondCategory)) {
 			msg.setText("Duplicate categories are not allowed.");
@@ -124,14 +128,27 @@ public class OpenWindow extends JFrame {
 		}
 	}
 	
+	/**
+	 * This method sets the first category.
+	 * @param category
+	 */
 	public void setFirstCategory(String category) {
 		firstCategory = category;
 	}
 	
+	/**
+	 * This method sets the second category.
+	 * @param category
+	 */
 	public void setSecondCategory(String category) {
 		secondCategory = category;
 	}
 	
+	/**
+	 * This method returns as a string the name of the first selected
+	 * category.
+	 * @return
+	 */
 	public String getFirstCategory() {
 		return firstCategory;
 	}
