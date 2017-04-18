@@ -1,5 +1,3 @@
-package goupproject;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,7 +11,7 @@ public class GameWindow extends JFrame{
 	private static int WIDTH = 800;
 	private static int HIGHT = 600;
 	private static Hand hand;
-	public GameWindow() {
+	public GameWindow(String category1, String category2) {
 		// TODO Auto-generated constructor stub
 		hand = new Hand();
 		HandPanel hp = new HandPanel(hand);
@@ -32,19 +30,6 @@ public class GameWindow extends JFrame{
 		
 	}
 	public void updateScoreCard(){
-		
-	}
-	
-	public static void main(String []args){
-		EventQueue.invokeLater(new Runnable(){
-			
-
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				GameWindow w = new GameWindow();
-			}
-		});
 		
 	}
 	
