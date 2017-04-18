@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * This class creates a windpw displaying the document containing the 
+ * This class creates a window displaying the document containing the 
  * rules of Jahtzee. 
  * @author Trevor Greenside
  */
