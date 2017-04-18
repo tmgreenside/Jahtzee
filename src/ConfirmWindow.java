@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ConfirmWindow extends JFrame {
-	
+	private static final long serialVersionUID = 1L;
 	private boolean playTrivia;
 	private JLabel message;
 	private JPanel messagePanel;
