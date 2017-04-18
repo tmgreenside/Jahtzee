@@ -112,7 +112,8 @@ public class OpenWindow extends JFrame {
 		} else {
 			msg.setText("");
 			this.setVisible(false);
-			GameWindow outGame = new GameWindow(firstCategory,secondCategory);
+			this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		}
 	}
 	
