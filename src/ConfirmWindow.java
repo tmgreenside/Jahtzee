@@ -59,10 +59,20 @@ public class ConfirmWindow extends JFrame {
 		this.setVisible(true);
 	}
 	
+	/**
+	 * This method takes as a parameter a boolean value to set whether or
+	 * not a Trivia question will be played.
+	 * @param play
+	 */
 	public void setPlayTrivia(boolean play) {
 		playTrivia = play;
 	}
 	
+	/**
+	 * This method returns the boolean value determining whether or not
+	 * a Trivia question will be played.
+	 * @return
+	 */
 	public boolean getPlayTrivia() {
 		return playTrivia;
 	}
