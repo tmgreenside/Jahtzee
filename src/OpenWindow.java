@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class OpenWindow extends JFrame {
+	private static final long serialVersionUID = 1L;
 	private String firstCategory;
 	private String secondCategory;
 	
