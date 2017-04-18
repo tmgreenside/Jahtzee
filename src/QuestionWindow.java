@@ -27,16 +27,10 @@ public class QuestionWindow extends JFrame implements ActionListener {
 	JRadioButton choiceOne;
 	JComboBox comboBox;
 	QuestionCache Q1;
-	mainFrame one;
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
-	public QuestionWindow(int score, String cat1, String cat2, mainFrame f) throws IOException {
-		one = f;
+	private ScorecardScrollBox S1;
+	
+	public QuestionWindow(int score, String cat1, String cat2, ScorecardScrollBox S ) throws IOException {
+		S1 = S;
 		Score = score;
 	    Q1 = new QuestionCache(cat1, cat2);
 		Q1.createCategoryOneArray();
@@ -114,6 +108,7 @@ public class QuestionWindow extends JFrame implements ActionListener {
 			comboBoxArray[i] = Integer.toString(i * 5);
 		}
 	}
+	
 	public void setCorrectScore(){
 		Score = Score + Integer.parseInt(comboBoxArray[comboBox.getSelectedIndex()]);
 	}
@@ -130,11 +125,13 @@ public class QuestionWindow extends JFrame implements ActionListener {
 				if(Q1.getAnswer() == Q1.getChoices().get(3)){
 					JOptionPane.showMessageDialog(this, "Correct you increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setCorrectScore();
+					S1.setScore(this.getScore());
 					this.dispose();
 				}
 				else{
 					JOptionPane.showMessageDialog(this, "Wrong you decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setIncorrectScore();
+					S1.setScore(this.getScore());
 					this.dispose();
 				}
 			}
@@ -142,11 +139,13 @@ public class QuestionWindow extends JFrame implements ActionListener {
 				if(Q1.getAnswer() == Q1.getChoices().get(2)){
 					JOptionPane.showMessageDialog(this, "Correct you increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );this.dispose();
 					this.setCorrectScore();
+					S1.setScore(this.getScore());
 					this.dispose();
 				}
 				else{
 					JOptionPane.showMessageDialog(this, "Wrong you decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setIncorrectScore();
+					S1.setScore(this.getScore());
 					this.dispose();
 				}
 			}
@@ -154,11 +153,13 @@ public class QuestionWindow extends JFrame implements ActionListener {
 				if(Q1.getAnswer() == Q1.getChoices().get(1)){
 					JOptionPane.showMessageDialog(this, "Correct you increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setCorrectScore();
+					S1.setScore(this.getScore());
 					this.dispose();
 				}
 				else{
 					JOptionPane.showMessageDialog(this, "Wrong you decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setIncorrectScore();
+					S1.setScore(this.getScore());
 					this.dispose();
 				}
 			}
@@ -166,11 +167,13 @@ public class QuestionWindow extends JFrame implements ActionListener {
 				if(Q1.getAnswer() == Q1.getChoices().get(0)){
 					JOptionPane.showMessageDialog(this, "Correct you increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setCorrectScore();
+					S1.setScore(this.getScore());
 					this.dispose();
 				}
 				else{
 					JOptionPane.showMessageDialog(this, "Wrong you decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setIncorrectScore();
+					S1.setScore(this.getScore());
 					this.dispose();
 				}
 			}
