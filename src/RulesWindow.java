@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class RulesWindow extends JFrame {
+	private static final long serialVersionUID = 1L;
 	private JScrollPane scroller;
 	private JLabel rules1;
 	private JLabel rules2;
