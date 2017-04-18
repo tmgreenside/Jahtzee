@@ -7,8 +7,9 @@ import javax.swing.*;
  * integer and also simulate rolling it to display a new
  * value.
  * @author Trevor Greenside
- * @version Last Changed: 25 March 2017
- * CPSC 224 Assignment 4
+ * @version Last Changed: 17 April 2017
+ * CPSC 224 Group Project: Jahtzee
+ */
  */
 public class Die extends JLabel {
 
@@ -65,24 +66,6 @@ public class Die extends JLabel {
 			break;
 		case 6:
 			this.setIcon(new ImageIcon("images/dice6.png"));
-			break;
-		case 7:
-			this.setIcon(new ImageIcon("images/dice7.png"));
-			break;
-		case 8:
-			this.setIcon(new ImageIcon("images/dice8.png"));
-			break;
-		case 9:
-			this.setIcon(new ImageIcon("images/dice9.png"));
-			break;
-		case 10:
-			this.setIcon(new ImageIcon("images/dice10.png"));
-			break;
-		case 11:
-			this.setIcon(new ImageIcon("images/dice11.png"));
-			break;
-		case 12:
-			this.setIcon(new ImageIcon("images/dice12.png"));
 			break;
 		}
 	}
