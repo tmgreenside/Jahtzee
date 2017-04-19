@@ -1,4 +1,4 @@
-//package goupproject;
+package goupproject;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -31,6 +31,9 @@ public class GameWindow extends JFrame{
 	private String cat1;
 	private String cat2;
 	
+	private UpperData ud;
+	private LowerData ld;
+	
 	private JLabel frstCat;
 	private JLabel scndCat;
 	
@@ -51,11 +54,15 @@ public class GameWindow extends JFrame{
 		// TODO Auto-generated constructor stub
 		JPanel container = new JPanel();
 		container.setBackground(Color.GREEN);
+		
 		//private fields are initialized
 		bonus_die = new BonusDie();
 		hand = new Hand(bonus_die);
 		cat1 = frstCat;
 		cat2 = scndCat;
+		ud = new UpperData(hand, bonus_die);
+		ld = new LowerData(hand, bonus_die);
+		
 		
 		// components are created
 		this.frstCat = new JLabel(frstCat);
@@ -134,8 +141,8 @@ public class GameWindow extends JFrame{
 				// Part I is where scoreing and trivia will occur, and 
 				// Part II is where the user will begin their first turn for the current hand.
 				if (turn == 0){
-/*
 					// part I
+/*					
 					confirmWin = new ConfirmWindow();
 					confirmWin.setVisible(true);
 					if (confirmWin.getPlayTrivia()){
