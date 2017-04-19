@@ -9,13 +9,13 @@ import java.util.*;
  * integer and also simulate rolling it to display a new
  * value.
  * @author Trevor Greenside
- * @version Last Changed: 25 March 2017
+ * @version Last Changed: 4 April 2017
  */
 public class Die {
 
 	private static final long serialVersionUID = 1L;
-	private int diceValue;
-	private boolean isKept; 
+	protected int diceValue;
+	protected boolean isKept; 
 	
 	public Die() {
 		rollDie(); 

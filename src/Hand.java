@@ -2,6 +2,8 @@ package goupproject;
 
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
+
 /**
  * class responsible for storing the die values and rolling the dice.
  * 
@@ -14,7 +16,7 @@ public class Hand {
 	private BonusDie bonusDie;
 	private boolean extraDie = false;
 	
-	public Hand() {
+	public Hand(BonusDie bd) {
 		// TODO Auto-generated constructor stub
 		handSize = 5;
 		dieValues = new ArrayList<Die>();
@@ -22,6 +24,7 @@ public class Hand {
 			Die die = new Die();
 			dieValues.add(die);
 		}
+		bonusDie = bd;
 	}
 	/**
 	 * returns a die at the specified index
@@ -39,7 +42,6 @@ public class Hand {
 		for (int i = 0; i < handSize; i++){
 			if (!dieValues.get(i).getIsKept()){
 				dieValues.get(i).rollDie();
-				System.out.println(dieValues.get(i).getSideUp());
 			}
 		}
 	}
@@ -56,6 +58,19 @@ public class Hand {
 	public Hand getHand(){
 		return this;
 	}
+	
+	public BonusDie getBonusDie(){
+		return bonusDie;
+	}
+	
+	
+	
+	/*
+	 * from this point on, im not sure if any of this code will be needed, 
+	 * but it is here just in case. I will delete it if we dont need it.
+	 */
+	
+
 	/**
 	 * @return the minimum number of dice that are the same
 	 */
@@ -76,6 +91,7 @@ public class Hand {
 		}
 		return minCount;
 	}
+	
 	/**
 	 * 
 	 * @return the maximum number of dice that are the same in the hand
@@ -160,4 +176,5 @@ public class Hand {
 		}
 		return total;
 	}
+
 }

@@ -4,8 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-
-public class RollButton extends JButton implements ActionListener{
+/**
+ * class responsible for creating the roll button. 
+ * @author Harvey
+ * @version Last changed: 4 April 2017
+ *
+ */
+public class RollButton extends JButton{
 	private int clicked;
 	private HandPanel hp;
 	private ScorecardScrollBox scsb;
@@ -15,39 +20,22 @@ public class RollButton extends JButton implements ActionListener{
 		clicked = 0;
 		this.hp = hp;
 		this.scsb = scsb;
-		this.setText("roll");
+		this.setText("Roll");
 	}
-		
-		@Override
-		public void actionPerformed(ActionEvent e){
-			clicked++;
-			int turn = clicked % 3;
-			
-			if (turn == 0){
-				hp.getHand().rollHand();
-				updateButtonIcons();
-				this.setText("Roll");
+	public void incrementClicked(){
+		clicked++;
+	}
+	public int getClicked(){
+		return clicked;
+	}
+	public void updateIsKept(){
+		for (int i = 0; i < 5; i++){
+			if(hp.getButtons().get(i).isSelected()){
+				hp.getHand().getDie(i).setIsKept(true);
 			}
-			else if (turn == 1){
-				hp.getHand().rollHand();
-				updateButtonIcons();
-				this.setText("Roll Again!");
-			}
-			else {
-				hp.getHand().rollHand();
-				updateButtonIcons();
-				this.setText("Set Score");
-				this.setEnabled(false);
+			else{
+				hp.getHand().getDie(i).setIsKept(false);
 			}
 		}
-		/**
-		 * used to update the button icon image
-		 */
-		private void updateButtonIcons(){
-			for (int i = 0; i < 5; i++){
-				hp.getButtons().get(i).setButtonIcon();
-			}
-		}
-	
-	
+	}
 }

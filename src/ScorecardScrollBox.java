@@ -29,7 +29,15 @@ import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.SwingConstants;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
-
+/**
+ * 
+ * class responsible for updating and displaying the score card
+ * 
+ * @author Scott Kopczynski
+ * @Version Last Changed: 19 April 2017
+ * 
+ *
+ */
 public class ScorecardScrollBox extends JPanel implements ActionListener {
 
 	/**
@@ -45,6 +53,10 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 	LineSubTotal, LineBonus, LineUpperTotal, LineLowerTotal, LineGrandTotal;
 	private String LineScored;
 	private int upperTotal, lowerTotal, grandTotal, Bonus;
+	
+	private ButtonGroup group;
+	private ArrayList<JRadioButton> scoreButtons;
+	
 	public ScorecardScrollBox() {
 		upperTotal = 0;
 		lowerTotal = 0;
@@ -65,7 +77,9 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		ChanceUsed = false;
 		YahtzeeUsed = false;
 		setLayout(new GridLayout(19, 3, 0, 0));
-		ButtonGroup group = new ButtonGroup();
+		group = new ButtonGroup();
+		scoreButtons = new ArrayList<JRadioButton>();
+		
 		JLabel Line = new JLabel("Line");
 		Line.setHorizontalAlignment(SwingConstants.CENTER);
 		add(Line);
@@ -87,6 +101,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		LineButtonOne = new JRadioButton("");
 		LineButtonOne.setHorizontalAlignment(SwingConstants.CENTER);
 		LineButtonOne.addActionListener(this);
+		scoreButtons.add(LineButtonOne);
 		add(LineButtonOne);
 		
 		JLabel Twos = new JLabel("Twos");
@@ -99,6 +114,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		LineButtonTwo = new JRadioButton("");
 		LineButtonTwo.setHorizontalAlignment(SwingConstants.CENTER);
 		LineButtonTwo.addActionListener(this);
+		scoreButtons.add(LineButtonTwo);
 		add(LineButtonTwo);
 		
 		JLabel Threes = new JLabel("Threes");
@@ -111,6 +127,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 	    LineButtonThree = new JRadioButton("");
 		LineButtonThree.setHorizontalAlignment(SwingConstants.CENTER);
 		LineButtonThree.addActionListener(this);
+		scoreButtons.add(LineButtonThree);
 		add(LineButtonThree);
 		
 		JLabel Fours = new JLabel("Fours");
@@ -123,6 +140,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 	    LineButtonFour = new JRadioButton("");
 		LineButtonFour.setHorizontalAlignment(SwingConstants.CENTER);
 		LineButtonFour.addActionListener(this);
+		scoreButtons.add(LineButtonFour);
 		add(LineButtonFour);
 		
 		JLabel Fives = new JLabel("Fives");
@@ -135,6 +153,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		LineButtonFive = new JRadioButton("");
 		LineButtonFive.setHorizontalAlignment(SwingConstants.CENTER);
 		LineButtonFive.addActionListener(this);
+		scoreButtons.add(LineButtonFive);
 		add(LineButtonFive);
 		
 		JLabel Sixes = new JLabel("Sixes");
@@ -147,6 +166,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		LineButtonSix = new JRadioButton("");
 		LineButtonSix.setHorizontalAlignment(SwingConstants.CENTER);
 		LineButtonSix.addActionListener(this);
+		scoreButtons.add(LineButtonSix);
 		add(LineButtonSix);
 		
 		JLabel SubTotal = new JLabel("Sub-Total");
@@ -193,6 +213,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		LineButtonThreeKind = new JRadioButton("");
 		LineButtonThreeKind.setHorizontalAlignment(SwingConstants.CENTER);
 		LineButtonThreeKind.addActionListener(this);
+		scoreButtons.add(LineButtonThreeKind);
 		add(LineButtonThreeKind);
 		
 		JLabel FourKind = new JLabel("Four of a kind");
@@ -205,6 +226,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		LineButtonFourKind = new JRadioButton("");
 		LineButtonFourKind.setHorizontalAlignment(SwingConstants.CENTER);
 		LineButtonFourKind.addActionListener(this);
+		scoreButtons.add(LineButtonFourKind);
 		add(LineButtonFourKind);
 		
 		JLabel FullHouse = new JLabel("Full House");
@@ -217,6 +239,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		LineButtonFullHouse = new JRadioButton("");
 		LineButtonFullHouse.setHorizontalAlignment(SwingConstants.CENTER);
 		LineButtonFullHouse.addActionListener(this);
+		scoreButtons.add(LineButtonFullHouse);
 		add(LineButtonFullHouse);
 		
 		JLabel SmallStraight = new JLabel("Small Straight");
@@ -229,6 +252,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		LineButtonSmallStraight = new JRadioButton("");
 		LineButtonSmallStraight.setHorizontalAlignment(SwingConstants.CENTER);
 		LineButtonSmallStraight.addActionListener(this);
+		scoreButtons.add(LineButtonSmallStraight);
 		add(LineButtonSmallStraight);
 		
 		JLabel LargeStraight = new JLabel("Large Straight");
@@ -241,6 +265,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		LineButtonLargeStraight = new JRadioButton("");
 		LineButtonLargeStraight.setHorizontalAlignment(SwingConstants.CENTER);
 		LineButtonLargeStraight.addActionListener(this);
+		scoreButtons.add(LineButtonLargeStraight);
 		add(LineButtonLargeStraight);
 		
 		JLabel Chance = new JLabel("Chance");
@@ -253,6 +278,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		LineButtonChance = new JRadioButton("");
 		LineButtonChance.setHorizontalAlignment(SwingConstants.CENTER);
 		LineButtonChance.addActionListener(this);
+		scoreButtons.add(LineButtonChance);
 		add(LineButtonChance);
 		
 		JLabel Yahtzee = new JLabel("Yahtzee");
@@ -265,6 +291,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		LineButtonYahtzee = new JRadioButton("");
 		LineButtonYahtzee.setHorizontalAlignment(SwingConstants.CENTER);
 		LineButtonYahtzee.addActionListener(this);
+		scoreButtons.add(LineButtonYahtzee);
 		add(LineButtonYahtzee);
 		
 		JLabel LowerTotal = new JLabel("Lower Total");
@@ -574,5 +601,14 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 	}
 	public void setGrandTotal(){
 		LineGrandTotal.setText(Integer.toString(lowerTotal + upperTotal + Bonus));
+	}
+	public ButtonGroup getGroup(){
+		return group;
+	}
+	public ArrayList<JRadioButton> getRadioButtons(){
+		return scoreButtons;
+	}
+	public void unselectAllButtons(){
+		group.clearSelection();
 	}
 }
