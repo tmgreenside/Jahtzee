@@ -29,8 +29,10 @@ public class QuestionWindow extends JFrame implements ActionListener {
 	JComboBox comboBox;
 	QuestionCache Q1;
 	private ScorecardScrollBox S1;
+    private BonusDie B;
 	
-	public QuestionWindow(int score, String cat1, String cat2, ScorecardScrollBox S ) throws IOException {
+	public QuestionWindow(int score, String cat1, String cat2, ScorecardScrollBox S, BonusDie die ) throws IOException {
+        B = die;
 		S1 = S;
 		Score = score;
 	    Q1 = new QuestionCache(cat1, cat2);
@@ -104,10 +106,16 @@ public class QuestionWindow extends JFrame implements ActionListener {
 		panel_2.add(Submit);
 	}
 	public void generateComboxString(){
-		comboBoxArray = new String[(Score / 5) + 1];
-		for(int i = 0; i < (Score / 5) + 1; i++){
-			comboBoxArray[i] = Integer.toString(i * 5);
-		}
+        if(B.getRule == "Double or Nothing"){
+            comboBoxArray = new String[1];
+            comboBoxArray[0] = score;
+        }
+        else{
+            comboBoxArray = new String[(Score / 5) + 1];
+            for(int i = 0; i < (Score / 5) + 1; i++){
+                comboBoxArray[i] = Integer.toString(i * 5);
+            }
+        }
 	}
 	
 	public void setCorrectScore(){
