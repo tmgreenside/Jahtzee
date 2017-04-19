@@ -108,7 +108,7 @@ public class QuestionWindow extends JFrame implements ActionListener {
 	public void generateComboxString(){
         if(B.getRule == "Double or Nothing"){
             comboBoxArray = new String[1];
-            comboBoxArray[0] = score;
+            comboBoxArray[0] = Score;
         }
         else{
             comboBoxArray = new String[(Score / 5) + 1];
