@@ -1,4 +1,4 @@
-//package goupproject;
+package goupproject;
 
 import java.util.ArrayList;
 
@@ -61,6 +61,9 @@ public class Hand {
 	
 	public BonusDie getBonusDie(){
 		return bonusDie;
+	}
+	public int getHandSize(){
+		return handSize;
 	}
 	
 	
@@ -171,10 +174,26 @@ public class Hand {
 	 */
 	public int totalAllDie(){
 		int total = 0;
-		for (int i = 0; i < 5; i++){
+		for (int i = 0; i < handSize; i++){
 			total += dieValues.get(i).getSideUp();
 		}
 		return total;
+	}
+	/**
+	 * when this is called, a new die is placed in the hand.
+	 * pertains to rule 1
+	 */
+	public void setRule(){
+		handSize = 6;
+		Die d = new Die();
+		dieValues.add(d);
+	}
+	/**
+	 * when this is called, the last die is removed from the hand.
+	 */
+	public void resetRule(){
+		handSize = 5; 
+		dieValues.remove(5);
 	}
 
 }
