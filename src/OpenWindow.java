@@ -1,7 +1,10 @@
+package goupproject;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
 
 /**
  * This class creates the Welcome screen that enables the user

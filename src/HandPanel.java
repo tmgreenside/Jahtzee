@@ -1,5 +1,6 @@
 package goupproject;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -32,20 +33,7 @@ public class HandPanel extends JPanel {
 			buttons.add(db);
 			this.add(buttons.get(i));
 		}
-		
-		rollButton rb = new rollButton(h);
-		rb.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e){
-				hand.rollHand();
-				for (int i = 0; i < 5; i++){
-					buttons.get(i).setButtonIcon();
-				}
-				
-			}
-		});
-		
-		this.add(rb);
+		this.setBackground(Color.GREEN);
 		
 	}
 	public void scoreHand(){
@@ -54,6 +42,11 @@ public class HandPanel extends JPanel {
 	public void keepHand(){
 		
 	}
-	
+	public Hand getHand(){
+		return hand;
+	}
+	public ArrayList<DieButton> getButtons(){
+		return buttons;
+	}
 	
 }

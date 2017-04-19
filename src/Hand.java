@@ -41,7 +41,6 @@ public class Hand {
 				dieValues.get(i).rollDie();
 				System.out.println(dieValues.get(i).getSideUp());
 			}
-			
 		}
 	}
 	/** 
@@ -56,5 +55,109 @@ public class Hand {
 	 */
 	public Hand getHand(){
 		return this;
+	}
+	/**
+	 * @return the minimum number of dice that are the same
+	 */
+	public int minOfAKindFound(){
+		// returns the minimum amount of numbers that are the same in the hand.
+		int minCount = handSize;
+		int currentCount;
+		for(int val=1; val <= 5; val++){
+			currentCount = 0;
+			for(int i = 0; i < handSize; i++){
+				if(dieValues.get(i).getSideUp() == val){
+					currentCount++;
+				}
+			}
+			if(currentCount < minCount && currentCount !=0){
+				minCount = currentCount;
+			}
+		}
+		return minCount;
+	}
+	/**
+	 * 
+	 * @return the maximum number of dice that are the same in the hand
+	 */
+	public int maxOfAKindFound(){
+		// returns the maximum amount of numbers that are the same
+		int maxCount = 0;
+		int currentCount;
+		for(int val = 1; val <= 5; val++){
+			currentCount = 0;
+			for (int i = 0; i< handSize; i++){
+				if(dieValues.get(i).getSideUp() == val){
+					currentCount++;
+				}
+			}
+			if (currentCount > maxCount){
+				maxCount = currentCount;
+			}
+		}
+		return maxCount;
+	}
+	/**
+	 * 
+	 * @return the largest number of consecutive dice
+	 */
+	public int maxStraightFound(){
+		// returns the maximum number of consecutive numbers in the hand.
+		int maxLength = 1;
+		int curLength = 1;
+		for (int i = 0; i < handSize-1; i++){
+			if(dieValues.get(i).getSideUp()+1 == dieValues.get(i+1).getSideUp()){
+				curLength ++;	
+			}
+		}
+		if (curLength > maxLength){
+			maxLength = curLength;
+		}
+		return maxLength;
+	}
+	/**
+	 * full house is defined as half the hand being the same value and the other half holding a different value.
+	 * @return true if a full house is found
+	 */
+	public boolean fullHouseFound(){
+		if (handSize % 2 == 0){
+			// the handSize is an even number
+			if (minOfAKindFound() == handSize/2){
+				return true;
+			}
+		}
+		else {
+			if (minOfAKindFound() == handSize/2){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * 
+	 * @param value
+	 * @return the sum of all dice of a certain value
+	 */
+	public int sumOfValue(int value){
+		// returns the total sum of passed in value contained in hand
+		int sum = 0;
+		for (int i = 0; i < handSize; i++){
+			if (dieValues.get(i).getSideUp() == value){
+				sum += value;
+			}
+		}
+		return sum;
+	}
+	/**
+	 * 
+	 * @return total of all dice in the hand.
+	 */
+	public int totalAllDie(){
+		int total = 0;
+		for (int i = 0; i < 5; i++){
+			total += dieValues.get(i).getSideUp();
+		}
+		return total;
 	}
 }

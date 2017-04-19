@@ -1,4 +1,4 @@
-package Jahtzee;
+package goupproject;
 
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -11,6 +11,7 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollBar;
 import java.awt.GridBagLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -19,10 +20,12 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JSeparator;
+/*
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
+*/
 import javax.swing.SwingConstants;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
@@ -303,6 +306,8 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		group.add(LineButtonFourKind);
 		group.add(LineButtonFullHouse);
 		group.add(LineButtonYahtzee);
+		this.setBackground(Color.WHITE);
+		this.setVisible(true);
 
 	}
 	public void actionPerformed(ActionEvent e){
@@ -570,5 +575,4 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 	public void setGrandTotal(){
 		LineGrandTotal.setText(Integer.toString(lowerTotal + upperTotal + Bonus));
 	}
-	
 }
