@@ -342,66 +342,79 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		if(src.equals(LineButtonOne)){
 			OneUsed = true;
 			LineScored = "One";
+			this.setScore(Integer.parseInt(LineOne.getText()));
 			this.clearScoreCard();
 		}
 		if(src.equals(LineButtonTwo)){
 			TwoUsed = true;
 			LineScored = "Two";
+			this.setScore(Integer.parseInt(LineTwo.getText()));
 			this.clearScoreCard();
 		}
 		if(src.equals(LineButtonThree)){
 			ThreeUsed = true;
 			LineScored = "Three";
+			this.setScore(Integer.parseInt(LineThree.getText()));
 			this.clearScoreCard();
 		}
 		if(src.equals(LineButtonFour)){
 			FourUsed = true;
 			LineScored = "Four";
+			this.setScore(Integer.parseInt(LineFour.getText()));
 			this.clearScoreCard();
 		}
 		if(src.equals(LineButtonFive)){
 			FiveUsed = true;
 			LineScored = "Five";
+			this.setScore(Integer.parseInt(LineFive.getText()));
 			this.clearScoreCard();
 		}
 		if(src.equals(LineButtonSix)){
 			SixUsed = true;
 			LineScored = "Six";
+			this.setScore(Integer.parseInt(LineSix.getText()));
 			this.clearScoreCard();
 		}
 		if(src.equals(LineButtonSmallStraight)){
 			SmallStraightUsed = true;
 			LineScored = "SS";
+			this.setScore(Integer.parseInt(LineSmallStraight.getText()));
 			this.clearScoreCard();
 		}
 		if(src.equals(LineButtonLargeStraight)){
 			LargeStraightUsed = true;
 			LineScored = "LS";
+			this.setScore(Integer.parseInt(LineLargeStraight.getText()));
 			this.clearScoreCard();
 		}
 		if(src.equals(LineButtonChance)){
 			ChanceUsed = true;
 			LineScored = "C";
+			this.setScore(Integer.parseInt(LineChance.getText()));
 			this.clearScoreCard();
 		}
 		if(src.equals(LineButtonThreeKind)){
 			ThreeKindUsed = true;
 			LineScored = "3K";
+			this.setScore(Integer.parseInt(LineThreeKind.getText()));
 			this.clearScoreCard();
 		}
 		if(src.equals(LineButtonFourKind)){
 			FourKindUsed = true;
 			LineScored = "4K";
+			this.setScore(Integer.parseInt(LineFourKind.getText()));
 			this.clearScoreCard();
 		}
 		if(src.equals(LineButtonYahtzee)){
 			YahtzeeUsed = true;
 			LineScored = "Y";
+			this.setScore(Integer.parseInt(LineYahtzee.getText()));
 			this.clearScoreCard();
 		}
 		if(src.equals(LineButtonFullHouse)){
 			FullHouseUsed = true;
 			LineScored = "FH";
+			this.setScore(Integer.parseInt(LineFullHouse.getText()));
 			this.clearScoreCard();
 		}
 	}
