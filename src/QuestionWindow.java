@@ -1,4 +1,5 @@
-package Jahtzee;
+//package goupproject;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

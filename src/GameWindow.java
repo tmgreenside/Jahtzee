@@ -1,10 +1,11 @@
-package goupproject;
+//package goupproject;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
@@ -24,11 +25,11 @@ import javax.swing.JRadioButton;
 public class GameWindow extends JFrame{
 	private static int WIDTH = 800;
 	private static int HIGHT = 600;
-	private static Hand hand;
 	
-	private JLabel rule_one;
-	private JLabel rule_two;
-	private String bonusRule;
+	private static Hand hand;
+	private BonusDie bonus_die;
+	private String cat1;
+	private String cat2;
 	
 	private JLabel frstCat;
 	private JLabel scndCat;
@@ -37,7 +38,9 @@ public class GameWindow extends JFrame{
 	private RollButton rb;
 	private HandPanel hp;
 	private DieButton db;
-	private BonusDie bonus_die;
+	
+	private ConfirmWindow confirmWin;
+	private QuestionWindow questWin;
 	
 	/**
 	 * the constructor creates each component, and then adds each one to a seperate jpanel called container.
@@ -48,18 +51,27 @@ public class GameWindow extends JFrame{
 		// TODO Auto-generated constructor stub
 		JPanel container = new JPanel();
 		container.setBackground(Color.GREEN);
+		//private fields are initialized
+		bonus_die = new BonusDie();
+		hand = new Hand(bonus_die);
+		cat1 = frstCat;
+		cat2 = scndCat;
 		
+		// components are created
 		this.frstCat = new JLabel(frstCat);
 		this.scndCat = new JLabel(scndCat);
 		
-		bonus_die = new BonusDie();
-		hand = new Hand(bonus_die);
+		
 		
 		hp = new HandPanel(hand);
 		scsb = new ScorecardScrollBox();
 		rb = new RollButton(hp, scsb);
 		RulesWindow ruleWin = new RulesWindow();
 		JButton rules = new JButton("display rules");
+		
+		
+		
+		// listeners for components are created
 		createScorecardButtonActionListeners();
 		createRollButtonActionListener();
 		rules.addActionListener(new ActionListener(){
@@ -71,8 +83,8 @@ public class GameWindow extends JFrame{
 			}
 			
 		});
-		scsb.getGroup();
 		
+		// components are added to the gameWindow
 		container.add(hp, BorderLayout.NORTH);
 		container.add(rb, BorderLayout.CENTER);
 		container.add(scsb, BorderLayout.SOUTH);
@@ -84,9 +96,7 @@ public class GameWindow extends JFrame{
 		this.setSize(WIDTH, HIGHT);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
-		
 	}
-	
 	
 	/**
 	 * this funtion creates an action listener on each radio button in the score card
@@ -101,21 +111,17 @@ public class GameWindow extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
 					rb.setEnabled(true);
-					enableAllButtons();
 				}
-				private void enableAllButtons(){
-					for (int i = 0; i < 5; i++){
-						hp.getButtons().get(i).setEnabled(true);
-					}
-				}
-				
 			});
 		}
 	}
+	
 	/**
 	 * this function gives control of the die buttons and the score card to the roll button.
 	 * it also disables the roll button and the dieButtons after the third roll.
 	 * When the user selects a line to score, the buttons should become enabled again.
+	 * 
+	 * this roll button is how each turn is controlled.
 	 */
 	private void createRollButtonActionListener(){
 		rb.addActionListener(new ActionListener(){
@@ -124,15 +130,35 @@ public class GameWindow extends JFrame{
 				rb.incrementClicked();
 				int turn = rb.getClicked() % 3;
 				
+				// this turn has two parts. 
+				// Part I is where scoreing and trivia will occur, and 
+				// Part II is where the user will begin their first turn for the current hand.
 				if (turn == 0){
+/*
+					// part I
+					confirmWin = new ConfirmWindow();
+					confirmWin.setVisible(true);
+					if (confirmWin.getPlayTrivia()){
+						try {
+							questWin = new QuestionWindow(7, cat1, cat2, scsb);
+							
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+						e1.printStackTrace();
+						}
+					}
+*/
+					// part II
+					resetRules();
 					unselectAllButtons();
 					rb.updateIsKept();
 					hp.getHand().rollHand();
 					hp.getHand().rollBonusDie();
 					hp.updateRule();
 					hp.getHand().getBonusDie().updateRule();
+					setRule();
+					enableAllButtons();
 					scsb.unselectAllButtons();
-					
 					updateButtonIcons();
 					rb.setText("Roll");
 				}
@@ -151,10 +177,12 @@ public class GameWindow extends JFrame{
 					rb.setEnabled(false);
 					unselectAllButtons();
 					disableAllButtons();
+					
 				}
 			}
 			/**
-			 * used to update the button icon image
+			 * used to update the button icon image.
+			 * called each turn
 			 */
 			private void updateButtonIcons(){
 				for (int i = 0; i < 5; i++){
@@ -179,8 +207,84 @@ public class GameWindow extends JFrame{
 					hp.getButtons().get(i).setEnabled(false);
 				}
 			}
+			/**
+			 * enables all the die buttons
+			 */
+			private void enableAllButtons(){
+				for (int i = 0; i < 5; i++){
+					hp.getButtons().get(i).setEnabled(true);
+				}
+			}
 			
 		});
+	}
+	/**
+	 * this function will be called at the start of each turn, and
+	 * will enable the bonus rule in play
+	 */
+	
+	// if your class deals with any of these rules, I need a setRule funtion, and a resetRule function
+	public void setRule(){
+		switch(hand.getBonusDie().getSideUp()){
+		case 1:
+			// the user gets an extra die
+			
+			break;
+		case 2:
+			// the score is doubled
+			
+			break;
+		case 3:
+			// the user must answer a trivia question, and must bet the whole score
+			
+			break;
+		case 4:
+			// the user recieves an extra roll
+			
+			break;
+		case 5:
+			// the user must answer a trivia question
+			
+			break;
+		case 6:
+			// the user's score is tripled
+			
+			break;
+		}
+		
+	}
+	/**
+	 * this function will be called at the start of each turn,
+	 * and will reset all the rules.
+	 */
+	// if your classes deal with any of these rules, I need a setRule function, and a resetRule function.
+	public void resetRules(){
+		switch(hand.getBonusDie().getSideUp()){
+		case 1:
+			// delete the extra die
+			
+			break;
+		case 2:
+			// stop the game from doubling the score
+			
+			break;
+		case 3:
+			// stop the game from forcing a trivia question and a "double or nothing" bet
+			
+			break;
+		case 4: 
+			// set the number of rolls back to 3
+			
+			break;
+		case 5:
+			// stop the game from forcing a trivia question
+			
+			break;
+		case 6:
+			// stop the game from tripling the score
+			
+			break;
+		}
 	}
 	
 	public void diplayBonusDieRule(){

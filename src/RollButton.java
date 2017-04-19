@@ -1,4 +1,4 @@
-package goupproject;
+//package goupproject;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,15 +12,18 @@ import javax.swing.JButton;
  */
 public class RollButton extends JButton{
 	private int clicked;
+	private int turns;
 	private HandPanel hp;
 	private ScorecardScrollBox scsb;
 	
 	public RollButton(HandPanel hp, ScorecardScrollBox scsb) {
 		// TODO Auto-generated constructor stub
 		clicked = 0;
+		turns = 3;
 		this.hp = hp;
 		this.scsb = scsb;
 		this.setText("Roll");
+		
 	}
 	public void incrementClicked(){
 		clicked++;
@@ -37,5 +40,14 @@ public class RollButton extends JButton{
 				hp.getHand().getDie(i).setIsKept(false);
 			}
 		}
+	}
+	public int getTurns(){
+		return turns;
+	}
+	public void setRule(){
+		turns = 4;
+	}
+	public void resetRule(){
+		turns = 3;
 	}
 }

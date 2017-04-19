@@ -1,4 +1,4 @@
-package goupproject;
+//package goupproject;
 
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
