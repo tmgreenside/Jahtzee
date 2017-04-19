@@ -1,3 +1,5 @@
+
+
 /**
  * The file creates the implementation for a score card line
  * used in a full game of one-player Jahtzee! that is 
@@ -51,23 +53,14 @@ public class ScorecardLineData {
 	 * @return
 	 */
 	public int getBonusSide() {
-		if (bonus.getSideUp() == 1) {
-			break;
+		if (bonus.getSideUp() == 2) {
+			int doubleScore = 2 * getScore();
+			return getScore();
 		}
-		else if (bonus.getSideUp() == 2) {
-			int doubleScore = 2 * getScore(); 
-		}
-		else if (bonus.getSideUp() == 3) {
-			break;
-		}
-		else if (bonus.getSideUp() == 4) {
-			break;
-		}
-		else if (bonus.getSideUp() == 5) {
-			break;
-		}
-		else if (bonus.getSideUp() == 6) {
+		if (bonus.getSideUp() == 6) {
 			int tripleScore = 3 * getScore();
-		}	
+			return tripleScore;
+		}
+		return getScore();
 	}
 }

@@ -1,3 +1,5 @@
+
+
 /**
  * The file creates the data implementation for the upper 
  * half of the score card used in a full game of one-player 
@@ -26,7 +28,8 @@ public class UpperData extends ScorecardLineData {
 	private ArrayList<Integer> upperScores = new ArrayList<>();
 	private Hand hand_1;
 	
-	public UpperData(Hand hand_1) {
+	public UpperData(Hand hand_1, BonusDie bonus) {
+		super(bonus);
 		this.hand_1 = hand_1;
 	}
 	
@@ -45,7 +48,7 @@ public class UpperData extends ScorecardLineData {
 		for (int i = 1; i < numberOfSides + 1; i++) {
 			int currentCount = 0;
 			for (int diePosition = 0; diePosition < numberOfDice; diePosition++) {
-				if (hand_1.get(diePosition) == i) {
+				if (hand_1.getDie(diePosition).getSideUp() == i) {
 					currentCount++;
 				}
 			}

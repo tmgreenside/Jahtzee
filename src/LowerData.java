@@ -1,3 +1,4 @@
+
 /**
  * The file creates the data implementation for the lower 
  * half of the score card used in a full game of one-player 
@@ -28,7 +29,8 @@ public class LowerData extends ScorecardLineData {
 	private Hand hand_1;
 	
 	
-	public LowerData(Hand hand_1) {
+	public LowerData(Hand hand_1, BonusDie bonus) {
+		super(bonus);
 		maxOfAKind = 0;
 		maxStraightFound = 0;
 		fullHouseFound = false;
@@ -48,7 +50,7 @@ public class LowerData extends ScorecardLineData {
 		for (int dieValue = 1; dieValue <= numberOfSides; dieValue++){
 			currentCount = 0;
 			for (int diePosition = 0; diePosition < numberOfDice; diePosition++){
-				if (hand_1.get(diePosition) == dieValue)
+				if (hand_1.getDie(diePosition).getSideUp() == dieValue)
 					currentCount++;
 			}
 			if (currentCount > maxCount)
@@ -67,9 +69,9 @@ public class LowerData extends ScorecardLineData {
 	    int curLength = 1;
 	    for(int counter = 0; counter < (numberOfDice - 1); counter++)
 	    {
-	        if (hand_1.get(counter) + 1 == hand_1.get(counter + 1) ) //jump of 1
+	        if (hand_1.getDie(counter).getSideUp() + 1 == hand_1.getDie(counter + 1).getSideUp() ) //jump of 1
 	            curLength++;
-	        else if (hand_1.get(counter) + 1 < hand_1.get(counter + 1)) //jump of >= 2
+	        else if (hand_1.getDie(counter).getSideUp() + 1 < hand_1.getDie(counter + 1).getSideUp()) //jump of >= 2
 	            curLength = 1;
 	        if (curLength > maxLength)
 	            maxLength = curLength;
@@ -99,7 +101,7 @@ public class LowerData extends ScorecardLineData {
 	    		currentCount = 0;
 	    		for (int diePosition = 0; diePosition < numberOfDice; diePosition++)
 	    		{
-	    			if (hand_1.get(diePosition) == dieValue)
+	    			if (hand_1.getDie(diePosition).getSideUp() == dieValue)
 	    				currentCount++;
 	    		}
 	    		if (currentCount >= 3){
@@ -111,7 +113,7 @@ public class LowerData extends ScorecardLineData {
 	    	for(int dieValue = 1; dieValue <= numberOfSides; dieValue++){
 	    		currentCount = 0;
 	    		for(int diePosition = 0; diePosition < numberOfDice; diePosition++){
-	    			if(hand_1.get(diePosition) == dieValue)
+	    			if(hand_1.getDie(diePosition).getSideUp() == dieValue)
 	    				currentCount++;
 	    		}
 	    		if(currentCount >= 2 && dieValue != found3KValue){
