@@ -25,7 +25,8 @@ public class LowerData extends ScorecardLineData {
 	private int numberOfDice;
 	private boolean threeOfKind;
 	private boolean twoOfKind;
-	private ArrayList<Integer> lowerScores = new ArrayList<>();
+	private ArrayList<Integer> lowerScores;
+	private ArrayList<Integer> possibleScores;
 	private Hand hand_1;
 	
 	
@@ -35,8 +36,72 @@ public class LowerData extends ScorecardLineData {
 		maxStraightFound = 0;
 		fullHouseFound = false;
 		this.hand_1 = hand_1;
-		
+		lowerScores = new ArrayList<Integer>();
+		possibleScores = new ArrayList<Integer>();
+		clearPossibleScores();
 	}
+	public void clearPossibleScores(){
+		for(int i = 0; i < 7; i++){
+			possibleScores.add(0);
+		}
+	}
+	
+	public ArrayList<Integer> getPossibleScores(){
+		for (int i = 0; i < 7; i++){
+			possibleScores.add(i, getPossibleScorePrime(i));
+		}
+		return possibleScores;
+	}
+	
+	public int getPossibleScorePrime(int index){
+		int score = 0;
+		switch(index){
+		case 0:
+			if (hand_1.maxOfAKindFound() >= 3){
+				score = hand_1.totalAllDie();
+			}
+			break;
+		case 1:
+			if (hand_1.maxOfAKindFound() >= 4){
+				score = hand_1.totalAllDie();
+			}
+			break;
+		case 2:
+			if(hand_1.fullHouseFound()){
+				score = 25;
+			}
+			break;
+		case 3:
+			if(hand_1.maxStraightFound() >= 4){
+				score = 30;
+			}
+			break;
+		case 4:
+			if(hand_1.maxStraightFound() >= 5){
+				score = 40;
+			}
+			break;
+		case 5:
+			if (hand_1.maxOfAKindFound() >= 5){
+				score = 50;
+			}
+			break;
+		case 6:
+			score = hand_1.totalAllDie();
+			break;
+		}
+		//bonus rules
+		if (hand_1.getBonusDie().getSideUp() == 2){
+			score = score * 2;
+		}
+		if (hand_1.getBonusDie().getSideUp() == 6){
+			score = score * 3;
+		}
+		return score;
+	}
+	
+	
+	
 	
 	/**
 	 * One of the methods that score hand, that determines the max of a

@@ -2,6 +2,7 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 /**
  * This class displays a prompt for the user to select whether
@@ -21,7 +22,7 @@ public class ConfirmWindow extends JFrame {
 	private JButton yesButton;
 	private JButton noButton;
 	
-	public ConfirmWindow() {
+	public ConfirmWindow(int score, String cat1, String cat2, ScorecardScrollBox scsb, BonusDie die, RollButton rb) {
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.setSize(500, 125);
 		this.setTitle("Jahtzee - Trivia Option");
@@ -35,15 +36,27 @@ public class ConfirmWindow extends JFrame {
 		
 		buttons = new JPanel();
 		buttons.setBackground(Color.BLUE);
+		
 		yesButton = new JButton("Yes");
 		yesButton.addActionListener(e -> {
 			setPlayTrivia(true);
 			this.setVisible(false);
+			try {
+				QuestionWindow qw = new QuestionWindow(score, cat1, cat2, scsb, die, rb);
+				qw.setVisible(true);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 		});
 		noButton = new JButton("No");
 		noButton.addActionListener(e -> {
 			setPlayTrivia(false);
 			this.setVisible(false);
+			rb.setEnabled(true);
+			scsb.setSelectedScore(scsb.getSelectedScore());
+			scsb.enableAllButtons();
 		});
 		buttons.add(yesButton);
 		buttons.add(noButton);
@@ -56,6 +69,10 @@ public class ConfirmWindow extends JFrame {
 		this.add(centerFill, BorderLayout.CENTER);
 		
 		playTrivia = true;
+		if (die.getSideUp() == 3){
+			noButton.setEnabled(false);
+		}
+		
 		
 		this.setBackground(Color.BLUE);
 		this.setVisible(true);

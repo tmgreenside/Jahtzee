@@ -1,4 +1,4 @@
-package goupproject;
+//package goupproject;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -42,6 +42,7 @@ public class GameWindow extends JFrame{
 	private HandPanel hp;
 	private DieButton db;
 	
+	
 	private ConfirmWindow confirmWin;
 	private QuestionWindow questWin;
 	
@@ -73,9 +74,11 @@ public class GameWindow extends JFrame{
 		hp = new HandPanel(hand);
 		scsb = new ScorecardScrollBox();
 		rb = new RollButton(hp, scsb);
-		RulesWindow ruleWin = new RulesWindow();
 		JButton rules = new JButton("display rules");
 		
+		RulesWindow ruleWin = new RulesWindow();
+		
+		scsb.showScores(ud.getPossibleScores(), ld.getPossibleScores());
 		
 		
 		// listeners for components are created
@@ -117,7 +120,9 @@ public class GameWindow extends JFrame{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					rb.setEnabled(true);
+					scsb.disableAllButSelected();
+					ConfirmWindow cw = new ConfirmWindow(scsb.getSelectedScore(), cat1, cat2, scsb, bonus_die, rb);
+					
 				}
 			});
 		}
@@ -135,27 +140,9 @@ public class GameWindow extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e){
 				rb.incrementClicked();
-				int turn = rb.getClicked() % 3;
+				int turn = rb.getClicked() % hand.getTurns();
 				
-				// this turn has two parts. 
-				// Part I is where scoreing and trivia will occur, and 
-				// Part II is where the user will begin their first turn for the current hand.
 				if (turn == 0){
-					// part I
-/*					
-					confirmWin = new ConfirmWindow();
-					confirmWin.setVisible(true);
-					if (confirmWin.getPlayTrivia()){
-						try {
-							questWin = new QuestionWindow(7, cat1, cat2, scsb);
-							
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-						e1.printStackTrace();
-						}
-					}
-*/
-					// part II
 					resetRules();
 					unselectAllButtons();
 					rb.updateIsKept();
@@ -168,13 +155,15 @@ public class GameWindow extends JFrame{
 					scsb.unselectAllButtons();
 					updateButtonIcons();
 					rb.setText("Roll");
+					scsb.showScores(ud.getPossibleScores(), ld.getPossibleScores());
 				}
-				else if (turn == 1){
+				else if (turn < hand.getTurns() - 1){
 					rb.updateIsKept();
 					hp.getHand().rollHand();
 					updateButtonIcons();
 					rb.setText("Roll Again!");
 					unselectAllButtons();
+					scsb.showScores(ud.getPossibleScores(), ld.getPossibleScores());
 				}
 				else {
 					rb.updateIsKept();
@@ -184,7 +173,7 @@ public class GameWindow extends JFrame{
 					rb.setEnabled(false);
 					unselectAllButtons();
 					disableAllButtons();
-					
+					scsb.showScores(ud.getPossibleScores(), ld.getPossibleScores());
 				}
 			}
 			/**
@@ -192,7 +181,7 @@ public class GameWindow extends JFrame{
 			 * called each turn
 			 */
 			private void updateButtonIcons(){
-				for (int i = 0; i < 5; i++){
+				for (int i = 0; i < hp.getButtons().size(); i++){
 					hp.getButtons().get(i).setButtonIcon();
 				}
 			}
@@ -201,7 +190,7 @@ public class GameWindow extends JFrame{
 			 * the all dice to unkept
 			 */
 			private void unselectAllButtons(){
-				for (int i = 0; i < 5; i++){
+				for (int i = 0; i < hp.getButtons().size(); i++){
 					hp.getButtons().get(i).setSelected(false);
 					hand.getDie(i).setIsKept(false);
 				}
@@ -210,7 +199,7 @@ public class GameWindow extends JFrame{
 			 * disables all the die buttons
 			 */
 			private void disableAllButtons(){
-				for (int i = 0; i < 5; i++){
+				for (int i = 0; i < hp.getButtons().size(); i++){
 					hp.getButtons().get(i).setEnabled(false);
 				}
 			}
@@ -218,7 +207,7 @@ public class GameWindow extends JFrame{
 			 * enables all the die buttons
 			 */
 			private void enableAllButtons(){
-				for (int i = 0; i < 5; i++){
+				for (int i = 0; i < hp.getButtons().size(); i++){
 					hp.getButtons().get(i).setEnabled(true);
 				}
 			}
@@ -235,6 +224,8 @@ public class GameWindow extends JFrame{
 		switch(hand.getBonusDie().getSideUp()){
 		case 1:
 			// the user gets an extra die
+			hand.setRule();
+			hp.setRule();
 			
 			break;
 		case 2:
@@ -247,6 +238,7 @@ public class GameWindow extends JFrame{
 			break;
 		case 4:
 			// the user recieves an extra roll
+			hand.setRule();
 			
 			break;
 		case 5:
@@ -258,7 +250,6 @@ public class GameWindow extends JFrame{
 			
 			break;
 		}
-		
 	}
 	/**
 	 * this function will be called at the start of each turn,
@@ -269,7 +260,8 @@ public class GameWindow extends JFrame{
 		switch(hand.getBonusDie().getSideUp()){
 		case 1:
 			// delete the extra die
-			
+			hand.resetRule();
+			hp.resetRule();
 			break;
 		case 2:
 			// stop the game from doubling the score
@@ -281,7 +273,7 @@ public class GameWindow extends JFrame{
 			break;
 		case 4: 
 			// set the number of rolls back to 3
-			
+			hand.resetRule();
 			break;
 		case 5:
 			// stop the game from forcing a trivia question

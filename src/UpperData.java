@@ -20,19 +20,60 @@
 import java.util.ArrayList;
 
 public class UpperData extends ScorecardLineData {
-	private ArrayList<Integer> nsTotal = new ArrayList<>();
+	private ArrayList<Integer> nsTotal;
 	private int diceTotal;
 	private int numberOfSides;
 	private int numberOfDice;
 	private int upperScoreCardSize;
-	private ArrayList<Integer> upperScores = new ArrayList<>();
+	private ArrayList<Integer> upperScores;
+	private ArrayList<Integer> possibleScores;
 	private Hand hand_1;
 	
 	public UpperData(Hand hand_1, BonusDie bonus) {
 		super(bonus);
+		upperScores = new ArrayList<Integer>();
+		nsTotal = new ArrayList<Integer>();
+		possibleScores = new ArrayList<Integer>();
+		
 		this.hand_1 = hand_1;
+		for (int i = 0; i < 6; i++){
+			upperScores.add(0);
+			nsTotal.add(0);
+			possibleScores.add(0);
+		}
+		
 	}
 	
+	public ArrayList<Integer> getPossibleScores(){
+		clearPossibleScores();
+		for (int i = 0; i < 6; i++){
+			possibleScores.add(i, getPossibleScoresPrime(i));
+			
+		}
+		return possibleScores;
+	}
+	private int getPossibleScoresPrime(int index){
+		int score = 0;
+		for (int i = 0; i < hand_1.getHandSize(); i++){
+			if (hand_1.getDie(i).getSideUp() == index+1){
+				score += (index+1);
+			}
+		}
+		//bonus rules
+		if (hand_1.getBonusDie().getSideUp() == 2){
+			score = score *2;
+		}
+		if (hand_1.getBonusDie().getSideUp() == 6){
+			score = score *3;
+		}
+		return score;
+	}
+	
+	private void clearPossibleScores(){
+		for (int i = 0; i < 6; i++){
+			possibleScores.add(i, 0);
+		}
+	}
 	/**
 	 * This method is used to score the upper half of the score card, it scores
 	 * each row of the upper score card based on the number of sides on a die, it
@@ -47,7 +88,7 @@ public class UpperData extends ScorecardLineData {
 	public void nsTotal (int numberOfSides, int numberOfDice) {
 		for (int i = 1; i < numberOfSides + 1; i++) {
 			int currentCount = 0;
-			for (int diePosition = 0; diePosition < numberOfDice; diePosition++) {
+			for (int diePosition = 0; diePosition < hand_1.getHandSize(); diePosition++) {
 				if (hand_1.getDie(diePosition).getSideUp() == i) {
 					currentCount++;
 				}
@@ -63,7 +104,7 @@ public class UpperData extends ScorecardLineData {
 	 * @return Returns an array list of integers that contains all the scores
 	 * for the upper score card.
 	 */
-	public ArrayList getNsTotal() {
+	public ArrayList<Integer> getNsTotal() {
 		return nsTotal;
 	}
 	
@@ -87,6 +128,5 @@ public class UpperData extends ScorecardLineData {
 	public ArrayList<Integer> getUpperScores() {
 		return upperScores;
 	}
-	
 	
 }

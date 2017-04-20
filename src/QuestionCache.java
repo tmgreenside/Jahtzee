@@ -11,8 +11,8 @@ public class QuestionCache {
 	private ArrayList<String> CategoryTwoArray;
 	private ArrayList<String> choiceArray;
 	public QuestionCache(String cat1, String cat2){
-		categoryOne = "src/Jahtzee/" + cat1 + ".txt";;
-		categoryTwo = "src/Jahtzee/" + cat2 + ".txt";
+		categoryOne = cat1 + ".txt";
+		categoryTwo = cat2 + ".txt";
 		CategoryOneArray = new ArrayList();
 		CategoryTwoArray = new ArrayList();
 		choiceArray = new ArrayList();

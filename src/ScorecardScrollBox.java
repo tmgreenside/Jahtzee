@@ -17,6 +17,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JSeparator;
@@ -57,7 +58,14 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 	private ButtonGroup group;
 	private ArrayList<JRadioButton> scoreButtons;
 	
+	String cat1;
+	String cat2;
+	BonusDie bd;
+	
+	
 	public ScorecardScrollBox() {
+		
+		
 		upperTotal = 0;
 		lowerTotal = 0;
 		grandTotal = 0;
@@ -335,10 +343,9 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		group.add(LineButtonYahtzee);
 		this.setBackground(Color.WHITE);
 		this.setVisible(true);
-
 	}
 	public void actionPerformed(ActionEvent e){
-		Object src = e.getSource();
+	/*	Object src = e.getSource();
 		if(src.equals(LineButtonOne)){
 			OneUsed = true;
 			LineScored = "One";
@@ -416,7 +423,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 			LineScored = "FH";
 			this.setScore(Integer.parseInt(LineFullHouse.getText()));
 			this.clearScoreCard();
-		}
+		}*/
 	}
 	public void clearScoreCard(){
 		if(OneUsed == false){
@@ -487,6 +494,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		if(ChanceUsed == false)
 			LineChance.setText(Integer.toString(lowerScorecard.get(6)));
 	}
+	
 	public void setScore(int score){
 		if(LineScored == "One"){
 			upperTotal = upperTotal + score;
@@ -522,7 +530,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		}
 		if(LineScored == "Five"){
 			upperTotal = upperTotal + score;
-			LineFive.setText(Integer.toString(score));
+			LineFour.setText(Integer.toString(score));
 			this.setUpper();
 			this.setBonus();
 			this.setLowerTotal();
@@ -623,5 +631,147 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 	}
 	public void unselectAllButtons(){
 		group.clearSelection();
+	}
+	
+	public int getSelectedScore(){
+		if(LineButtonOne.isSelected()){
+			return Integer.parseInt(LineOne.getText());
+		}
+		if(LineButtonTwo.isSelected()){
+			return Integer.parseInt(LineTwo.getText());
+		}
+		if(LineButtonThree.isSelected()){
+			return Integer.parseInt(LineThree.getText());
+		}
+		if(LineButtonFour.isSelected()){
+			return Integer.parseInt(LineFour.getText());
+		}
+		if(LineButtonFive.isSelected()){
+			return Integer.parseInt(LineFive.getText());
+		}
+		if(LineButtonSix.isSelected()){
+			return Integer.parseInt(LineSix.getText());
+		}
+		if(LineButtonThreeKind.isSelected()){
+			return Integer.parseInt(LineThreeKind.getText());
+		}
+		if(LineButtonFourKind.isSelected()){
+			return Integer.parseInt(LineFourKind.getText());
+		}
+		if(LineButtonSmallStraight.isSelected()){
+			return Integer.parseInt(LineSmallStraight.getText());
+		}
+		if(LineButtonLargeStraight.isSelected()){
+			return Integer.parseInt(LineLargeStraight.getText());
+		}
+		if(LineButtonFullHouse.isSelected()){
+			return Integer.parseInt(LineFullHouse.getText());
+		}
+		if(LineButtonChance.isSelected()){
+			return Integer.parseInt(LineChance.getText());
+		}
+		if(LineButtonYahtzee.isSelected()){
+			return Integer.parseInt(LineYahtzee.getText());
+		}
+		return 0;
+	}
+	/**
+	 * sets the score in the selected radio button in the scorecard
+	 * @param score this is the score that is entered into the scoreCard 
+	 */
+	public void setSelectedScore(int score){
+		if(LineButtonOne.isSelected()){
+			OneUsed = true;
+			LineOne.setText(Integer.toString(score));
+			upperTotal = upperTotal + score;
+			
+		}
+		if(LineButtonTwo.isSelected()){
+			TwoUsed = true;
+			upperTotal = upperTotal + score;
+			LineTwo.setText(Integer.toString(score));
+			
+		}
+		if(LineButtonThree.isSelected()){
+			ThreeUsed = true;
+			upperTotal = upperTotal + score;
+			LineThree.setText(Integer.toString(score));
+			
+		}
+		if(LineButtonFour.isSelected()){
+			FourUsed = true;
+			upperTotal = upperTotal + score;
+			LineFour.setText(Integer.toString(score));
+			
+		}
+		if(LineButtonFive.isSelected()){
+			FiveUsed = true;
+			upperTotal = upperTotal + score;
+			LineFour.setText(Integer.toString(score));
+			
+		}
+		if(LineButtonSix.isSelected()){
+			SixUsed = true;
+			upperTotal = upperTotal + score;
+			LineSix.setText(Integer.toString(score));
+			
+		}
+		if(LineButtonThreeKind.isSelected()){
+			ThreeKindUsed = true;
+			lowerTotal = lowerTotal + score;
+			LineThreeKind.setText(Integer.toString(score));
+		}
+		if(LineButtonFourKind.isSelected()){
+			FourKindUsed = true;
+			lowerTotal = lowerTotal + score;
+			LineFourKind.setText(Integer.toString(score));
+		}
+		if(LineButtonSmallStraight.isSelected()){
+			SmallStraightUsed = true;
+			lowerTotal = lowerTotal + score;
+			LineFullHouse.setText(Integer.toString(score));
+		}
+		if(LineButtonLargeStraight.isSelected()){
+			LargeStraightUsed = true;
+			lowerTotal = lowerTotal + score;
+			LineSmallStraight.setText(Integer.toString(score));
+		}
+		if(LineButtonFullHouse.isSelected()){
+			FullHouseUsed = true;
+			lowerTotal = lowerTotal + score;
+			LineLargeStraight.setText(Integer.toString(score));
+		}
+		if(LineButtonChance.isSelected()){
+			ChanceUsed = true;
+			lowerTotal = lowerTotal + score;
+			LineYahtzee.setText(Integer.toString(score));
+		}
+		else{
+			YahtzeeUsed = true;
+			lowerTotal = lowerTotal + score;
+			LineChance.setText(Integer.toString(score));
+		}
+		this.setUpper();
+		this.setBonus();
+		this.setLowerTotal();
+		this.setGrandTotal();
+		clearScoreCard();
+	}
+	/**
+	 * disables all radio buttons except for the selected button in the scorecard
+	 */
+	public void disableAllButSelected(){
+		for (int i = 0; i < scoreButtons.size(); i++){
+			if (!scoreButtons.get(i).isSelected())
+				scoreButtons.get(i).setEnabled(false);
+		}
+	}
+	/**
+	 * enables all the radio buttons in the scorecard
+	 */
+	public void enableAllButtons(){
+		for (int i =0; i < scoreButtons.size(); i++){
+			scoreButtons.get(i).setEnabled(true);
+		}
 	}
 }

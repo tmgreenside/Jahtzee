@@ -30,10 +30,13 @@ public class QuestionWindow extends JFrame implements ActionListener {
 	QuestionCache Q1;
 	private ScorecardScrollBox S1;
     private BonusDie B;
+    private RollButton rb;
 	
-	public QuestionWindow(int score, String cat1, String cat2, ScorecardScrollBox S, BonusDie die ) throws IOException {
+	public QuestionWindow(int score, String cat1, String cat2, ScorecardScrollBox S, BonusDie die, RollButton rb) throws IOException {
         B = die;
+        this.rb = rb;
 		S1 = S;
+		
 		Score = score;
 	    Q1 = new QuestionCache(cat1, cat2);
 		Q1.createCategoryOneArray();
@@ -106,9 +109,9 @@ public class QuestionWindow extends JFrame implements ActionListener {
 		panel_2.add(Submit);
 	}
 	public void generateComboxString(){
-        if(B.getRule == "Double or Nothing"){
+        if(B.getRule() == "Double or Nothing"){
             comboBoxArray = new String[1];
-            comboBoxArray[0] = Score;
+            comboBoxArray[0] = Integer.toString(Score);
         }
         else{
             comboBoxArray = new String[(Score / 5) + 1];
@@ -134,58 +137,46 @@ public class QuestionWindow extends JFrame implements ActionListener {
 				if(Q1.getAnswer() == Q1.getChoices().get(3)){
 					JOptionPane.showMessageDialog(this, "Correct you increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setCorrectScore();
-					S1.setScore(this.getScore());
-					this.dispose();
 				}
 				else{
 					JOptionPane.showMessageDialog(this, "Wrong you decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setIncorrectScore();
-					S1.setScore(this.getScore());
-					this.dispose();
 				}
 			}
 			if(choiceThree.isSelected()){
 				if(Q1.getAnswer() == Q1.getChoices().get(2)){
 					JOptionPane.showMessageDialog(this, "Correct you increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );this.dispose();
 					this.setCorrectScore();
-					S1.setScore(this.getScore());
-					this.dispose();
 				}
 				else{
 					JOptionPane.showMessageDialog(this, "Wrong you decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setIncorrectScore();
-					S1.setScore(this.getScore());
-					this.dispose();
 				}
 			}
 			if(choiceTwo.isSelected()){
 				if(Q1.getAnswer() == Q1.getChoices().get(1)){
 					JOptionPane.showMessageDialog(this, "Correct you increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setCorrectScore();
-					S1.setScore(this.getScore());
-					this.dispose();
 				}
 				else{
 					JOptionPane.showMessageDialog(this, "Wrong you decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setIncorrectScore();
-					S1.setScore(this.getScore());
-					this.dispose();
 				}
 			}
 			if(choiceOne.isSelected()){
 				if(Q1.getAnswer() == Q1.getChoices().get(0)){
 					JOptionPane.showMessageDialog(this, "Correct you increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setCorrectScore();
-					S1.setScore(this.getScore());
-					this.dispose();
 				}
 				else{
 					JOptionPane.showMessageDialog(this, "Wrong you decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setIncorrectScore();
-					S1.setScore(this.getScore());
-					this.dispose();
 				}
 			}
+			S1.enableAllButtons();
+			rb.setEnabled(true);
+			S1.setSelectedScore(Score);
+			this.dispose();
 		}
 		if(src.equals(choiceFour)){
 			Submit.setEnabled(true);

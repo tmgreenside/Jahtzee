@@ -37,6 +37,9 @@ public class HandPanel extends JPanel {
 			this.add(buttons.get(i));
 		}
 		hand.getBonusDie().updateRule();
+		if(bd.getSideUp() == 1){
+			setRule();
+		}
 		bonusRule = new JLabel();
 		bonusRule.setText("Bonus Rule: " + bd.getRule());
 		this.add(bonusRule);
@@ -44,7 +47,9 @@ public class HandPanel extends JPanel {
 		
 	}
 	public void updateRule(){
+		bd.updateRule();
 		bonusRule.setText("Bonus Rule: " + bd.getRule());
+		
 	}
 	
 	public void scoreHand(){
@@ -59,5 +64,15 @@ public class HandPanel extends JPanel {
 	public ArrayList<DieButton> getButtons(){
 		return buttons;
 	}
-	
+	public void setRule(){
+		DieButton db = new DieButton(hand.getDie(5));
+		db.setButtonIcon();
+		buttons.add(db);
+		this.add(buttons.get(5));
+		
+	}
+	public void resetRule(){
+		this.remove(buttons.get(5));
+		buttons.remove(5);
+	}
 }

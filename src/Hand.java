@@ -1,4 +1,4 @@
-package goupproject;
+//package goupproject;
 
 import java.util.ArrayList;
 
@@ -14,17 +14,21 @@ public class Hand {
 	private ArrayList<Die> dieValues;
 	private int handSize;
 	private BonusDie bonusDie;
-	private boolean extraDie = false;
+	private int turns;
 	
 	public Hand(BonusDie bd) {
 		// TODO Auto-generated constructor stub
 		handSize = 5;
+		turns = 3;
 		dieValues = new ArrayList<Die>();
 		for (int i = 0; i < handSize; i++){
 			Die die = new Die();
 			dieValues.add(die);
 		}
 		bonusDie = bd;
+		if (bd.getSideUp() == 1){
+			setRule();
+		}
 	}
 	/**
 	 * returns a die at the specified index
@@ -65,15 +69,36 @@ public class Hand {
 	public int getHandSize(){
 		return handSize;
 	}
-	
-	
-	
-	/*
-	 * from this point on, im not sure if any of this code will be needed, 
-	 * but it is here just in case. I will delete it if we dont need it.
+	public int getTurns(){
+		return turns;
+	}
+	/**
+	 * when this is called, a new die is placed in the hand.
+	 * pertains to rule 1
 	 */
+	public void setRule(){
+		if (bonusDie.getSideUp() == 1){
+			handSize = 6;
+			Die d = new Die();
+			dieValues.add(d);
+		}
+		else if(bonusDie.getSideUp() == 4){
+			turns = 4;
+		}
+	}
+	/**
+	 * when this is called, the last die is removed from the hand.
+	 */
+	public void resetRule(){
+		if (bonusDie.getSideUp() == 1){
+			handSize = 5; 
+			dieValues.remove(5);
+		}
+		else if (bonusDie.getSideUp() == 4){
+			turns = 3;
+		}
+	}
 	
-
 	/**
 	 * @return the minimum number of dice that are the same
 	 */
@@ -179,21 +204,6 @@ public class Hand {
 		}
 		return total;
 	}
-	/**
-	 * when this is called, a new die is placed in the hand.
-	 * pertains to rule 1
-	 */
-	public void setRule(){
-		handSize = 6;
-		Die d = new Die();
-		dieValues.add(d);
-	}
-	/**
-	 * when this is called, the last die is removed from the hand.
-	 */
-	public void resetRule(){
-		handSize = 5; 
-		dieValues.remove(5);
-	}
+	
 
 }
