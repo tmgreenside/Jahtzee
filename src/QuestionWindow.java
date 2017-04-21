@@ -114,16 +114,15 @@ public class QuestionWindow extends JFrame implements ActionListener {
             comboBoxArray[0] = Integer.toString(Score);
         }
         else{
-            comboBoxArray = new String[(Score / 5) + 1];
-            for(int i = 0; i < (Score / 5) + 1; i++){
-                comboBoxArray[i] = Integer.toString(i * 5);
+            comboBoxArray = new String[Score + 1];
+            for(int i = 0; i < Score + 1; i++){
+                comboBoxArray[i] = Integer.toString(i);
             }
         }
 	}
 	
 	public void setCorrectScore(){
 		Score = Score + Integer.parseInt(comboBoxArray[comboBox.getSelectedIndex()]);
-		S1.hideAllButtons();
 		S1.setSelectedScore(Score);
 	}
 	public void setIncorrectScore(){

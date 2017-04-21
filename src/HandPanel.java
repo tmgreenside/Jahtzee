@@ -2,6 +2,7 @@
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,19 +27,22 @@ public class HandPanel extends JPanel {
 	private ArrayList<DieButton> buttons;
 	private JLabel bonusRule;
 	private BonusDie bd;
-	
+	private JPanel hndPnl;
 	
 	public HandPanel(Hand h) {
 		// TODO Auto-generated constructor stub
-		
+		hndPnl = new JPanel();
+		hndPnl.setBackground(Color.GREEN);
 		buttons = new ArrayList<DieButton>();
 		hand = h;
 		bd = hand.getBonusDie();
+		this.setLayout(new BorderLayout());
 		for (int i = 0; i < 5; i++){
 			DieButton db = new DieButton(h.getDie(i));
 			db.setButtonIcon();
 			buttons.add(db);
-			this.add(buttons.get(i));
+			hndPnl.add(buttons.get(i));
+			this.add(hndPnl, BorderLayout.CENTER);
 		}
 		hand.getBonusDie().updateRule();
 		if(bd.getSideUp() == 1){
@@ -63,7 +67,7 @@ public class HandPanel extends JPanel {
 		jp.add(lbl3, BorderLayout.WEST);
 		jp.add(lbl4, BorderLayout.EAST);
 		jp.setBackground(Color.YELLOW);
-		this.add(jp);
+		
 		this.setBackground(Color.GREEN);
 		JPanel jpnl = new JPanel();
 		jpnl.setLayout(new GridLayout(7, 1));
@@ -89,7 +93,16 @@ public class HandPanel extends JPanel {
 		jpnl.add(lb5);
 		jpnl.add(lb6);
 		jpnl.setBackground(Color.orange);
-		this.add(jpnl);
+		JPanel jpnl2 = new JPanel();
+		jpnl2.setLayout(new FlowLayout());
+		jpnl2.add(jp);
+		jpnl2.add(jpnl);
+		jpnl2.setBackground(Color.GREEN);
+		JPanel jpnl1 = new JPanel();
+		jpnl1.setLayout(new BorderLayout());
+		jpnl1.add(jpnl2, BorderLayout.CENTER);
+		jpnl1.setBackground(Color.GREEN);
+		this.add(jpnl1, BorderLayout.EAST);
 		
 	}
 	public void updateRule(){
@@ -114,11 +127,12 @@ public class HandPanel extends JPanel {
 		DieButton db = new DieButton(hand.getDie(5));
 		db.setButtonIcon();
 		buttons.add(db);
-		this.add(buttons.get(5));
+		hndPnl.add(buttons.get(5));
+		this.add(hndPnl);
 		
 	}
 	public void resetRule(){
-		this.remove(buttons.get(5));
+		hndPnl.remove(buttons.get(5));
 		buttons.remove(5);
 	}
 }
