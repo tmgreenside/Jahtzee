@@ -3,6 +3,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 
 /**
  * class responsible for displaying the UX for the final game
@@ -23,7 +25,7 @@ import javax.swing.JRadioButton;
  * 
  */
 public class GameWindow extends JFrame{
-	private static int WIDTH = 800;
+	private static int WIDTH = 765;
 	private static int HIGHT = 600;
 	
 	private static Hand hand;
@@ -74,7 +76,7 @@ public class GameWindow extends JFrame{
 		hp = new HandPanel(hand);
 		scsb = new ScorecardScrollBox();
 		rb = new RollButton(hp, scsb);
-		JButton rules = new JButton("display rules");
+		JButton rules = new JButton("Display Rules");
 		
 		RulesWindow ruleWin = new RulesWindow();
 		
@@ -95,14 +97,23 @@ public class GameWindow extends JFrame{
 		});
 		
 		// components are added to the gameWindow
-		container.add(hp, BorderLayout.NORTH);
-		container.add(rb, BorderLayout.CENTER);
-		container.add(scsb, BorderLayout.SOUTH);
-		container.add(this.frstCat, BorderLayout.EAST);
-		container.add(this.scndCat, BorderLayout.EAST);
-		container.add(rules, BorderLayout.EAST);
+		container.setLayout(new BorderLayout());
+		JPanel p1 = new JPanel();
+		p1.add(hp);
+		p1.add(rb);
+		p1.setBackground(Color.GREEN);
+		JPanel p2 = new JPanel();
+		p2.setBackground(Color.GREEN);
+		p2.add(this.frstCat);
+		p2.add(this.scndCat);
+		p2.add(rules);
+		container.add(p1, BorderLayout.CENTER);
 		
+		container.add(p2, BorderLayout.SOUTH);
+		JScrollPane js = new JScrollPane(scsb);
+		this.setLayout(new GridLayout(2, 1));
 		this.add(container);
+		this.add(js);
 		this.setSize(WIDTH, HIGHT);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);

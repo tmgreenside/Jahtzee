@@ -1,4 +1,4 @@
-//package goupproject;
+
 
 /**
  * The file creates the implementation for a score card line

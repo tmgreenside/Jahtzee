@@ -43,6 +43,7 @@ public class ConfirmWindow extends JFrame {
 			this.setVisible(false);
 			try {
 				QuestionWindow qw = new QuestionWindow(score, cat1, cat2, scsb, die, rb);
+				
 				qw.setVisible(true);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block

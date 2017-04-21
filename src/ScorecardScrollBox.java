@@ -495,113 +495,6 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 			LineChance.setText(Integer.toString(lowerScorecard.get(6)));
 	}
 	
-	public void setScore(int score){
-		if(LineScored == "One"){
-			upperTotal = upperTotal + score;
-			LineOne.setText(Integer.toString(score));
-			this.setUpper();
-			this.setBonus();
-			this.setLowerTotal();
-			this.setGrandTotal();
-		}
-		if(LineScored == "Two"){
-			upperTotal = upperTotal + score;
-			LineTwo.setText(Integer.toString(score));
-			this.setUpper();
-			this.setBonus();
-			this.setLowerTotal();
-			this.setGrandTotal();
-		}
-		if(LineScored == "Three"){
-			upperTotal = upperTotal + score;
-			LineThree.setText(Integer.toString(score));
-			this.setUpper();
-			this.setBonus();
-			this.setLowerTotal();
-			this.setGrandTotal();
-		}
-		if(LineScored == "Four"){
-			upperTotal = upperTotal + score;
-			LineFour.setText(Integer.toString(score));
-			this.setUpper();
-			this.setBonus();
-			this.setLowerTotal();
-			this.setGrandTotal();
-		}
-		if(LineScored == "Five"){
-			upperTotal = upperTotal + score;
-			LineFour.setText(Integer.toString(score));
-			this.setUpper();
-			this.setBonus();
-			this.setLowerTotal();
-			this.setGrandTotal();
-		}
-		if(LineScored == "Six"){
-			upperTotal = upperTotal + score;
-			LineSix.setText(Integer.toString(score));
-			this.setUpper();
-			this.setBonus();
-			this.setLowerTotal();
-			this.setGrandTotal();
-		}
-		if(LineScored == "3K"){
-			lowerTotal = lowerTotal + score;
-			LineThreeKind.setText(Integer.toString(score));
-			this.setUpper();
-			this.setBonus();
-			this.setLowerTotal();
-			this.setGrandTotal();
-		}
-		if(LineScored == "4K"){
-			lowerTotal = lowerTotal + score;
-			LineFourKind.setText(Integer.toString(score));
-			this.setUpper();
-			this.setBonus();
-			this.setLowerTotal();
-			this.setGrandTotal();
-		}
-		if(LineScored == "FH"){
-			lowerTotal = lowerTotal + score;
-			LineFullHouse.setText(Integer.toString(score));
-			this.setUpper();
-			this.setBonus();
-			this.setLowerTotal();
-			this.setGrandTotal();
-		}
-		if(LineScored == "SS"){
-			lowerTotal = lowerTotal + score;
-			LineSmallStraight.setText(Integer.toString(score));
-			this.setUpper();
-			this.setBonus();
-			this.setLowerTotal();
-			this.setGrandTotal();
-		}
-		if(LineScored == "LS"){
-			lowerTotal = lowerTotal + score;
-			LineLargeStraight.setText(Integer.toString(score));
-			this.setUpper();
-			this.setBonus();
-			this.setLowerTotal();
-			this.setGrandTotal();
-		}
-		if(LineScored == "Y"){
-			lowerTotal = lowerTotal + score;
-			LineYahtzee.setText(Integer.toString(score));
-			this.setUpper();
-			this.setBonus();
-			this.setLowerTotal();
-			this.setGrandTotal();
-		}
-		if(LineScored == "C"){
-			lowerTotal = lowerTotal + score;
-			LineChance.setText(Integer.toString(score));
-			this.setUpper();
-			this.setBonus();
-			this.setLowerTotal();
-			this.setGrandTotal();
-		}
-		
-	}
 	public void setUpper(){
 		LineSubTotal.setText(Integer.toString(upperTotal));
 	}
@@ -618,6 +511,7 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		}
 	}
 	public void setLowerTotal(){
+		
 		LineLowerTotal.setText(Integer.toString(lowerTotal));
 	}
 	public void setGrandTotal(){
@@ -631,6 +525,11 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 	}
 	public void unselectAllButtons(){
 		group.clearSelection();
+	}
+	public void hideAllButtons(){
+		for(int i = 0; i < scoreButtons.size(); i ++){
+			scoreButtons.get(i).setVisible(false);
+		}
 	}
 	
 	public int getSelectedScore(){
@@ -684,77 +583,126 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 			OneUsed = true;
 			LineOne.setText(Integer.toString(score));
 			upperTotal = upperTotal + score;
+			this.setUpper();
+			this.setBonus();
+			this.setLowerTotal();
+			this.setGrandTotal();
 			
 		}
 		if(LineButtonTwo.isSelected()){
 			TwoUsed = true;
 			upperTotal = upperTotal + score;
 			LineTwo.setText(Integer.toString(score));
+			this.setUpper();
+			this.setBonus();
+			this.setLowerTotal();
+			this.setGrandTotal();
 			
 		}
 		if(LineButtonThree.isSelected()){
 			ThreeUsed = true;
 			upperTotal = upperTotal + score;
 			LineThree.setText(Integer.toString(score));
+			this.setUpper();
+			this.setBonus();
+			this.setLowerTotal();
+			this.setGrandTotal();
 			
 		}
 		if(LineButtonFour.isSelected()){
 			FourUsed = true;
 			upperTotal = upperTotal + score;
 			LineFour.setText(Integer.toString(score));
+			this.setUpper();
+			this.setBonus();
+			this.setLowerTotal();
+			this.setGrandTotal();
 			
 		}
 		if(LineButtonFive.isSelected()){
 			FiveUsed = true;
 			upperTotal = upperTotal + score;
-			LineFour.setText(Integer.toString(score));
+			LineFive.setText(Integer.toString(score));
+			this.setUpper();
+			this.setBonus();
+			this.setLowerTotal();
+			this.setGrandTotal();
 			
 		}
 		if(LineButtonSix.isSelected()){
 			SixUsed = true;
 			upperTotal = upperTotal + score;
 			LineSix.setText(Integer.toString(score));
+			this.setUpper();
+			this.setBonus();
+			this.setLowerTotal();
+			this.setGrandTotal();
 			
 		}
 		if(LineButtonThreeKind.isSelected()){
 			ThreeKindUsed = true;
 			lowerTotal = lowerTotal + score;
 			LineThreeKind.setText(Integer.toString(score));
+			this.setUpper();
+			this.setBonus();
+			this.setLowerTotal();
+			this.setGrandTotal();
 		}
 		if(LineButtonFourKind.isSelected()){
 			FourKindUsed = true;
 			lowerTotal = lowerTotal + score;
 			LineFourKind.setText(Integer.toString(score));
+			this.setUpper();
+			this.setBonus();
+			this.setLowerTotal();
+			this.setGrandTotal();
 		}
 		if(LineButtonSmallStraight.isSelected()){
 			SmallStraightUsed = true;
 			lowerTotal = lowerTotal + score;
-			LineFullHouse.setText(Integer.toString(score));
+			LineSmallStraight.setText(Integer.toString(score));
+			this.setUpper();
+			this.setBonus();
+			this.setLowerTotal();
+			this.setGrandTotal();
 		}
 		if(LineButtonLargeStraight.isSelected()){
 			LargeStraightUsed = true;
 			lowerTotal = lowerTotal + score;
-			LineSmallStraight.setText(Integer.toString(score));
+			LineLargeStraight.setText(Integer.toString(score));
+			this.setUpper();
+			this.setBonus();
+			this.setLowerTotal();
+			this.setGrandTotal();
 		}
 		if(LineButtonFullHouse.isSelected()){
 			FullHouseUsed = true;
 			lowerTotal = lowerTotal + score;
-			LineLargeStraight.setText(Integer.toString(score));
+			LineFullHouse.setText(Integer.toString(score));
+			this.setUpper();
+			this.setBonus();
+			this.setLowerTotal();
+			this.setGrandTotal();
 		}
 		if(LineButtonChance.isSelected()){
 			ChanceUsed = true;
 			lowerTotal = lowerTotal + score;
-			LineYahtzee.setText(Integer.toString(score));
+			LineChance.setText(Integer.toString(score));
+			this.setUpper();
+			this.setBonus();
+			this.setLowerTotal();
+			this.setGrandTotal();
 		}
-		else{
+		else if(LineButtonYahtzee.isSelected()){
 			YahtzeeUsed = true;
 			lowerTotal = lowerTotal + score;
-			LineChance.setText(Integer.toString(score));
+			LineYahtzee.setText(Integer.toString(score));
+			this.setUpper();
+			this.setBonus();
+			this.setLowerTotal();
+			this.setGrandTotal();
 		}
-		this.setUpper();
-		this.setBonus();
-		this.setLowerTotal();
-		this.setGrandTotal();
+		
 		clearScoreCard();
 	}
 	/**
@@ -764,6 +712,8 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 		for (int i = 0; i < scoreButtons.size(); i++){
 			if (!scoreButtons.get(i).isSelected())
 				scoreButtons.get(i).setEnabled(false);
+			else
+				scoreButtons.get(i).setVisible(false);
 		}
 	}
 	/**
@@ -771,7 +721,8 @@ public class ScorecardScrollBox extends JPanel implements ActionListener {
 	 */
 	public void enableAllButtons(){
 		for (int i =0; i < scoreButtons.size(); i++){
-			scoreButtons.get(i).setEnabled(true);
+			if(!scoreButtons.get(i).isSelected())
+				scoreButtons.get(i).setEnabled(true);
 		}
 	}
 }

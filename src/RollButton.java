@@ -13,6 +13,7 @@ import javax.swing.JButton;
 public class RollButton extends JButton{
 	private int clicked;
 	private int turns;
+	private int allKept;
 	private HandPanel hp;
 	private ScorecardScrollBox scsb;
 	
@@ -20,6 +21,7 @@ public class RollButton extends JButton{
 		// TODO Auto-generated constructor stub
 		clicked = 0;
 		turns = 3;
+		allKept = 0;
 		this.hp = hp;
 		this.scsb = scsb;
 		this.setText("Roll");
@@ -35,6 +37,7 @@ public class RollButton extends JButton{
 		for (int i = 0; i < 5; i++){
 			if(hp.getButtons().get(i).isSelected()){
 				hp.getHand().getDie(i).setIsKept(true);
+				allKept++;
 			}
 			else{
 				hp.getHand().getDie(i).setIsKept(false);
@@ -49,5 +52,8 @@ public class RollButton extends JButton{
 	}
 	public void resetRule(){
 		turns = 3;
+	}
+	public int getAllKept(){
+		return allKept;
 	}
 }

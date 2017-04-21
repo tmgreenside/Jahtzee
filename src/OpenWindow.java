@@ -37,7 +37,7 @@ public class OpenWindow extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		thePanel = new JPanel(new BorderLayout());
 		thePanel.setBackground(Color.GREEN);
-		String[] categories = {"Entertainment","Literature","Food","Sports","Automotives","History","Music","Science"};
+		String[] categories = {"Entertainment","Literature","Food","Sports","Automotive","History","Music","Science"};
 		
 		northPanel = new JPanel(new BorderLayout());
 		northPanel.setBackground(Color.GREEN);

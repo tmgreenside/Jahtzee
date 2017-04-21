@@ -28,7 +28,7 @@ public class QuestionWindow extends JFrame implements ActionListener {
 	JRadioButton choiceOne;
 	JComboBox comboBox;
 	QuestionCache Q1;
-	private ScorecardScrollBox S1;
+	ScorecardScrollBox S1;
     private BonusDie B;
     private RollButton rb;
 	
@@ -123,9 +123,12 @@ public class QuestionWindow extends JFrame implements ActionListener {
 	
 	public void setCorrectScore(){
 		Score = Score + Integer.parseInt(comboBoxArray[comboBox.getSelectedIndex()]);
+		S1.hideAllButtons();
+		S1.setSelectedScore(Score);
 	}
 	public void setIncorrectScore(){
 		Score = Score - Integer.parseInt(comboBoxArray[comboBox.getSelectedIndex()]);
+		S1.setSelectedScore(Score);
 	}
 	public int getScore(){
 		return Score;
@@ -175,7 +178,6 @@ public class QuestionWindow extends JFrame implements ActionListener {
 			}
 			S1.enableAllButtons();
 			rb.setEnabled(true);
-			S1.setSelectedScore(Score);
 			this.dispose();
 		}
 		if(src.equals(choiceFour)){
