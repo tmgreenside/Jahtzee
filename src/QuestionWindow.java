@@ -172,7 +172,6 @@ public class QuestionWindow extends JFrame implements ActionListener {
 					this.setIncorrectScore();
 				}
 			}
-			S1.enableAllButtons();
 			rb.setEnabled(true);
 			this.dispose();
 		}
