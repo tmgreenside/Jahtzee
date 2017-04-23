@@ -1,6 +1,3 @@
-//package goupproject;
-
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.*;
@@ -137,41 +134,41 @@ public class QuestionWindow extends JFrame implements ActionListener {
 		if(src.equals(Submit)){
 			if(choiceFour.isSelected()){
 				if(Q1.getAnswer() == Q1.getChoices().get(3)){
-					JOptionPane.showMessageDialog(this, "Correct you increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
+					JOptionPane.showMessageDialog(this, "Correct! You increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setCorrectScore();
 				}
 				else{
-					JOptionPane.showMessageDialog(this, "Wrong you decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
+					JOptionPane.showMessageDialog(this, "Wrong. You decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setIncorrectScore();
 				}
 			}
 			if(choiceThree.isSelected()){
 				if(Q1.getAnswer() == Q1.getChoices().get(2)){
-					JOptionPane.showMessageDialog(this, "Correct you increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );this.dispose();
+					JOptionPane.showMessageDialog(this, "Correct! You increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );this.dispose();
 					this.setCorrectScore();
 				}
 				else{
-					JOptionPane.showMessageDialog(this, "Wrong you decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
+					JOptionPane.showMessageDialog(this, "Wrong. You decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setIncorrectScore();
 				}
 			}
 			if(choiceTwo.isSelected()){
 				if(Q1.getAnswer() == Q1.getChoices().get(1)){
-					JOptionPane.showMessageDialog(this, "Correct you increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
+					JOptionPane.showMessageDialog(this, "Correct! You increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setCorrectScore();
 				}
 				else{
-					JOptionPane.showMessageDialog(this, "Wrong you decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
+					JOptionPane.showMessageDialog(this, "Wrong. You decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setIncorrectScore();
 				}
 			}
 			if(choiceOne.isSelected()){
 				if(Q1.getAnswer() == Q1.getChoices().get(0)){
-					JOptionPane.showMessageDialog(this, "Correct you increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
+					JOptionPane.showMessageDialog(this, "Correct! You increased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setCorrectScore();
 				}
 				else{
-					JOptionPane.showMessageDialog(this, "Wrong you decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
+					JOptionPane.showMessageDialog(this, "Wrong. You decreased your score by " + comboBoxArray[comboBox.getSelectedIndex()], "Result", JOptionPane.PLAIN_MESSAGE );
 					this.setIncorrectScore();
 				}
 			}
