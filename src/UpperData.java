@@ -1,5 +1,3 @@
-//package goupproject;
-
 /**
  * The file creates the data implementation for the upper 
  * half of the score card used in a full game of one-player 
@@ -69,7 +67,7 @@ public class UpperData extends ScorecardLineData {
 		return score;
 	}
 	
-	private void clearPossibleScores(){
+	public void clearPossibleScores(){
 		for (int i = 0; i < 6; i++){
 			possibleScores.add(i, 0);
 		}
