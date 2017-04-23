@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 
 import javax.swing.AbstractButton;
@@ -132,7 +134,66 @@ public class GameWindow extends JFrame{
 					// TODO Auto-generated method stub
 					scsb.disableAllButSelected();
 					rb.setText("Set Score");
-					ConfirmWindow cw = new ConfirmWindow(scsb.getSelectedScore(), cat1, cat2, scsb, bonus_die, rb);
+					ConfirmWindow cw = new ConfirmWindow();
+					cw.addWindowListener(new WindowListener(){
+
+						@Override
+						public void windowActivated(WindowEvent e) {
+							// TODO Auto-generated method stub
+							
+						}
+
+						@Override
+						public void windowClosed(WindowEvent e) {
+							// TODO Auto-generated method stub
+							
+						}
+
+						@Override
+						public void windowClosing(WindowEvent e) {
+							// TODO Auto-generated method stub
+							
+						}
+
+						@Override
+						public void windowDeactivated(WindowEvent e) {
+							// TODO Auto-generated method stub
+							if (cw.getPlayTrivia()){
+								try {
+									QuestionWindow qw = new QuestionWindow(scsb.getSelectedScore(), cat1, cat2, scsb, bonus_die, rb);
+									qw.setVisible(true);
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								
+							}
+							else{
+								scsb.setSelectedScore(scsb.getSelectedScore());
+								rb.setEnabled(true);
+								scsb.enableAllButtons();
+							}
+						}
+
+						@Override
+						public void windowDeiconified(WindowEvent e) {
+							// TODO Auto-generated method stub
+							
+						}
+
+						@Override
+						public void windowIconified(WindowEvent e) {
+							// TODO Auto-generated method stub
+							
+						}
+
+						@Override
+						public void windowOpened(WindowEvent e) {
+							// TODO Auto-generated method stub
+							
+						}
+						
+					});
 					
 				}
 			});
