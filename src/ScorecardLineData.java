@@ -52,7 +52,7 @@ public class ScorecardLineData {
 	public int getBonusSide() {
 		if (bonus.getSideUp() == 2) {
 			int doubleScore = 2 * getScore();
-			return getScore();
+			return doubleScore;
 		}
 		if (bonus.getSideUp() == 6) {
 			int tripleScore = 3 * getScore();
