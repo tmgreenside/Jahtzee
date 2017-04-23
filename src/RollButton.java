@@ -34,7 +34,7 @@ public class RollButton extends JButton{
 		return clicked;
 	}
 	public void updateIsKept(){
-		for (int i = 0; i < 5; i++){
+		for (int i = 0; i < hp.getHand().getHandSize(); i++){
 			if(hp.getButtons().get(i).isSelected()){
 				hp.getHand().getDie(i).setIsKept(true);
 				allKept++;
