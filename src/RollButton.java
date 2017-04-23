@@ -56,4 +56,7 @@ public class RollButton extends JButton{
 	public int getAllKept(){
 		return allKept;
 	}
+	public void setClicked(int i){
+		clicked = i;
+	}
 }

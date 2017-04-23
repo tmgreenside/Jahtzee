@@ -134,6 +134,8 @@ public class GameWindow extends JFrame{
 					// TODO Auto-generated method stub
 					scsb.disableAllButSelected();
 					rb.setText("Set Score");
+					rb.setClicked(hand.getTurns()-1);
+					
 					ConfirmWindow cw = new ConfirmWindow();
 					cw.addWindowListener(new WindowListener(){
 
@@ -211,7 +213,11 @@ public class GameWindow extends JFrame{
 		rb.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
+				
 				rb.incrementClicked();
+				if(isAllButtonsSelected()){
+					rb.setClicked(hand.getTurns()-1);
+				}
 				int turn = rb.getClicked() % hand.getTurns();
 				
 				if (turn == 0 || rb.getText().equals("Set Score")){
@@ -283,6 +289,14 @@ public class GameWindow extends JFrame{
 					hp.getButtons().get(i).setEnabled(true);
 				}
 			}
+			private boolean isAllButtonsSelected(){
+				for (int i = 0; i < hand.getHandSize(); i++){
+					if (!hp.getButtons().get(i).isSelected()){
+						return false;
+					}
+				}
+				return true;
+			}
 			
 		});
 	}
@@ -311,6 +325,7 @@ public class GameWindow extends JFrame{
 		case 4:
 			// the user recieves an extra roll
 			hand.setRule();
+			rb.setRule();
 			
 			break;
 		case 5:
@@ -346,6 +361,7 @@ public class GameWindow extends JFrame{
 		case 4: 
 			// set the number of rolls back to 3
 			hand.resetRule();
+			rb.resetRule();
 			break;
 		case 5:
 			// stop the game from forcing a trivia question
