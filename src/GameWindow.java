@@ -160,7 +160,7 @@ public class GameWindow extends JFrame{
 						@Override
 						public void windowDeactivated(WindowEvent e) {
 							// TODO Auto-generated method stub
-							if (cw.getPlayTrivia()){
+							if (cw.getPlayTrivia() || bonus_die.getSideUp() == 3){
 								try {
 									QuestionWindow qw = new QuestionWindow(scsb.getSelectedScore(), cat1, cat2, scsb, bonus_die, rb);
 									qw.setVisible(true);
