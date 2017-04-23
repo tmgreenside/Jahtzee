@@ -173,7 +173,7 @@ public class GameWindow extends JFrame{
 							else{
 								scsb.setSelectedScore(scsb.getSelectedScore());
 								rb.setEnabled(true);
-								scsb.enableAllButtons();
+								
 							}
 						}
 
@@ -201,7 +201,6 @@ public class GameWindow extends JFrame{
 			});
 		}
 	}
-	
 	/**
 	 * this function gives control of the die buttons and the score card to the roll button.
 	 * it also disables the roll button and the dieButtons after the third roll.
@@ -220,7 +219,7 @@ public class GameWindow extends JFrame{
 				}
 				int turn = rb.getClicked() % hand.getTurns();
 				
-				if (turn == 0 || rb.getText().equals("Set Score")){
+				if (turn == 0){
 					resetRules();
 					unselectAllButtons();
 					rb.updateIsKept();
@@ -231,6 +230,7 @@ public class GameWindow extends JFrame{
 					setRule();
 					enableAllButtons();
 					scsb.unselectAllButtons();
+					scsb.enableAllButtons();
 					updateButtonIcons();
 					rb.setText("Roll");
 					scsb.showScores(ud.getPossibleScores(), ld.getPossibleScores());
