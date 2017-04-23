@@ -137,6 +137,9 @@ public class GameWindow extends JFrame{
 					rb.setClicked(hand.getTurns()-1);
 					
 					ConfirmWindow cw = new ConfirmWindow();
+					if (bonus_die.getSideUp() == 3){
+						cw.disableNo();
+					}
 					cw.addWindowListener(new WindowListener(){
 
 						@Override

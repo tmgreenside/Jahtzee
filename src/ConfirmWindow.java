@@ -67,7 +67,9 @@ public class ConfirmWindow extends JFrame {
 	public void setPlayTrivia(boolean play) {
 		playTrivia = play;
 	}
-	
+	public void disableNo(){
+		noButton.setEnabled(false);
+	}
 	/**
 	 * This method returns the boolean value determining whether or not
 	 * a Trivia question will be played.
