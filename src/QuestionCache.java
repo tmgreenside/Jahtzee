@@ -18,16 +18,18 @@ public class QuestionCache {
 		choiceArray = new ArrayList();
 	}
 	public void createCategoryOneArray() throws IOException{
-		FileReader fr = new FileReader(categoryOne);
-		BufferedReader textReader = new BufferedReader(fr);
+		FileInputStream fileInputStream = new FileInputStream(categoryOne);
+		InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream,"UTF-8" );
+		BufferedReader textReader = new BufferedReader(inputStreamReader);
 		for(String line = textReader.readLine(); line != null; line = textReader.readLine()){
 			CategoryOneArray.add(line);
 		}
 		textReader.close();
 	}
 	public void createCategoryTwoArray() throws IOException{
-		FileReader fr = new FileReader(categoryTwo);
-		BufferedReader textReader = new BufferedReader(fr);
+		FileInputStream fileInputStream = new FileInputStream(categoryTwo);
+		InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream,"UTF-8");
+		BufferedReader textReader = new BufferedReader(inputStreamReader);
 		for(String line = textReader.readLine(); line != null; line = textReader.readLine()){
 			CategoryTwoArray.add(line);
 		}

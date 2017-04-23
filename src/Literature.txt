@@ -3,11 +3,11 @@ A Study in Scarlet
 The Sign of the Four
 The Hound of the Baskervilles
 The Valley of Fear
-Which of these horror novels was Stephen King’s first published?
+Which of these horror novels was Stephen King's first published?
 Carrie
 The Shining
 The Stand
-Salem’s Lot
+Salem�s Lot
 Which of the following authors wrote The Hunt for Red October?
 Tom Clancy
 Robert Ludlum
@@ -18,7 +18,7 @@ J.K. Rowling
 J.R.R. Tolkien
 C.S. Lewis
 Terry Brooks
-The quote “Who is Jon Galt?” is associated with which of the following novels by Ayn Rand?
+The quote "Who is Jon Galt?" is associated with which of the following novels by Ayn Rand?
 Atlas Shrugged
 The Fountainhead
 We the Living
@@ -28,7 +28,7 @@ The Picture of Dorian Gray
 Pride and Prejudice
 Great Expectations
 The Once and Future King
-In Nathaniel Hawthorne’s novel The Scarlet Letter, what does the titular letter stand for?
+In Nathaniel Hawthorne's novel The Scarlet Letter, what does the titular letter stand for?
 Adultery
 Theft
 Blasphemy
@@ -43,11 +43,11 @@ Dandelion Wine
 The Grapes of Wrath
 East of Eden
 Of Mice and Men
-In Shakespeare’s Hamlet, the titular character gives the famous “To be or not to be” monologue. What is the purpose of this speech?
+In Shakespeare's Hamlet, the titular character gives the famous "To be or not to be" monologue. What is the purpose of this speech?
 He is contemplating suicide
 He is planning to assassinate his uncle
 He is planning to propose to Ophelia
-He is considering how to deal with Horatio’s betrayal
+He is considering how to deal with Horatio's betrayal
 A Clash of Kings is the second installment in which series of novels?
 A Song of Ice and Fire
 The Lord of the Rings
@@ -57,22 +57,22 @@ Which of these novels was the first by Ian Fleming to feature James Bond?
 Casino Royale
 Dr. No
 Thunderball
-On Her Majesty’s Secret Service
+On Her Majesty's Secret Service
 Big Brother, the idea of a Big Government imposing on civilian privacy rights, originated in which of the following novels?
 1984
 Animal Farm
 Fahrenheit 451
 Atlas Shrugged
-John Steinbeck’s novel East of Eden centers on which two families?
+John Steinbeck's novel East of Eden centers on which two families?
 Track and Hamilton
 Hatfield and McCoy
 Montague and Capulet
 Small and Milton
 In Macbeth, how is Macduff able to kill the titular tyrant?
 He is not born of woman, as he was a cesarian
-Duncan’s ghost startles Macbeth, and Macduff stabs him in the back
-He doesn’t; the three witches arrive and subdue Macbeth
-Banquo’s son wounds Macbeth, and Macduff finishes him to avenge his family
+Duncan's ghost startles Macbeth, and Macduff stabs him in the back
+He doesn't; the three witches arrive and subdue Macbeth
+Banquo's son wounds Macbeth, and Macduff finishes him to avenge his family
 In this play by William Shakespeare, Shylock demands a pound of flesh from Antonio:
 The Merchant of Venice
 Hamlet
@@ -83,7 +83,7 @@ Thomas Harris
 Dan Brown
 Tom Clancy
 Arthur Conan Doyle
-In William Golding’s Lord of the Flies, which boy is the only one to avoid Jack’s descent into savagery?
+In William Golding's Lord of the Flies, which boy is the only one to avoid Jack's descent into savagery?
 Ralph
 Simon
 Eric
