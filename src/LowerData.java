@@ -1,4 +1,3 @@
-//package goupproject;
 /**
  * The file creates the data implementation for the lower 
  * half of the score card used in a full game of one-player 
@@ -40,6 +39,7 @@ public class LowerData extends ScorecardLineData {
 		possibleScores = new ArrayList<Integer>();
 		clearPossibleScores();
 	}
+	
 	public void clearPossibleScores(){
 		for(int i = 0; i < 7; i++){
 			possibleScores.add(0);
@@ -57,32 +57,32 @@ public class LowerData extends ScorecardLineData {
 		int score = 0;
 		switch(index){
 		case 0:
-			if (hand_1.maxOfAKindFound() >= 3){
+			if (hand_1.maxOfAKind() >= 3){
 				score = hand_1.totalAllDie();
 			}
 			break;
 		case 1:
-			if (hand_1.maxOfAKindFound() >= 4){
+			if (hand_1.maxOfAKind() >= 4){
 				score = hand_1.totalAllDie();
 			}
 			break;
 		case 2:
-			if(hand_1.fullHouseFound()){
+			if(hand_1.fullHouse()){
 				score = 25;
 			}
 			break;
 		case 3:
-			if(hand_1.maxStraightFound() >= 4){
+			if(hand_1.maxStraight() >= 4){
 				score = 30;
 			}
 			break;
 		case 4:
-			if(hand_1.maxStraightFound() >= 5){
+			if(hand_1.maxStraight() >= 5){
 				score = 40;
 			}
 			break;
 		case 5:
-			if (hand_1.maxOfAKindFound() >= 5){
+			if (hand_1.maxOfAKind() >= 5){
 				score = 50;
 			}
 			break;
@@ -100,8 +100,28 @@ public class LowerData extends ScorecardLineData {
 		return score;
 	}
 	
-	
-	
+	/**
+	 * This method sorts the values taken from the dice for use
+	 * in creating the scoring options.
+	 * @param theValuesIn
+	 * @return
+	 */
+	private int[] sortValues(int[] theValuesIn) {
+		int[] theValues = theValuesIn;
+		boolean swapped;
+		do {
+			swapped = false;
+			for (int d = 0; d < numberOfDice - 1; d++) {
+				if(theValues[d] > theValues[d + 1]) {
+					int temp = theValues[d];
+					theValues[d] = theValues[d + 1];
+					theValues[d + 1] = temp;
+					swapped = true;
+				}
+			}
+		} while(swapped);
+		return theValues;
+	}
 	
 	/**
 	 * One of the methods that score hand, that determines the max of a
@@ -110,12 +130,17 @@ public class LowerData extends ScorecardLineData {
 	 * work with any size die/hand.
 	 */
 	public void maxOfAKind() {
+		int[] theValues = new int[numberOfDice];
+		for (int i = 0; i < numberOfDice; i++) {
+			theValues[i] = hand_1.getDie(i).getSideUp();
+		}
+		sortValues(theValues);
 		int maxCount = 0;
 		int currentCount;
 		for (int dieValue = 1; dieValue <= numberOfSides; dieValue++){
 			currentCount = 0;
 			for (int diePosition = 0; diePosition < numberOfDice; diePosition++){
-				if (hand_1.getDie(diePosition).getSideUp() == dieValue)
+				if (theValues[diePosition] == dieValue)
 					currentCount++;
 			}
 			if (currentCount > maxCount)
@@ -123,6 +148,7 @@ public class LowerData extends ScorecardLineData {
 		}
 		maxOfAKind = maxCount;	
 	}
+	
 	/**
 	 * This method determines the maximum straight(sequence of consecutive dice), the only
 	 * modifications to this method from assignment one is using variables in the for
@@ -130,13 +156,18 @@ public class LowerData extends ScorecardLineData {
 	 * on those dice.
 	 */
 	public void maxStraight() {
+		int[] theValues = new int[numberOfDice];
+		for (int i = 0; i < numberOfDice; i++) {
+			theValues[i] = hand_1.getDie(i).getSideUp();
+		}
+		sortValues(theValues);
 	    int maxLength = 1;
 	    int curLength = 1;
 	    for(int counter = 0; counter < (numberOfDice - 1); counter++)
 	    {
-	        if (hand_1.getDie(counter).getSideUp() + 1 == hand_1.getDie(counter + 1).getSideUp() ) //jump of 1
+	        if (theValues[counter] + 1 == theValues[counter + 1]) //jump of 1
 	            curLength++;
-	        else if (hand_1.getDie(counter).getSideUp() + 1 < hand_1.getDie(counter + 1).getSideUp()) //jump of >= 2
+	        else if ((theValues[counter] + 1) < theValues[counter + 1]) //jump of >= 2
 	            curLength = 1;
 	        if (curLength > maxLength)
 	            maxLength = curLength;
@@ -151,6 +182,12 @@ public class LowerData extends ScorecardLineData {
 	 * amount of dice/ number of sides on a dice.
 	 */
 	public void fullHouse() {
+		int[] theValues = new int[numberOfDice];
+		for (int i = 0; i < numberOfDice; i++) {
+			theValues[i] = hand_1.getDie(i).getSideUp();
+		}
+		sortValues(theValues);
+		
 	    boolean foundFH = false;
 	    boolean found3K = false;
 	    boolean found2K = false;
@@ -166,7 +203,7 @@ public class LowerData extends ScorecardLineData {
 	    		currentCount = 0;
 	    		for (int diePosition = 0; diePosition < numberOfDice; diePosition++)
 	    		{
-	    			if (hand_1.getDie(diePosition).getSideUp() == dieValue)
+	    			if (theValues[diePosition] == dieValue)
 	    				currentCount++;
 	    		}
 	    		if (currentCount >= 3){
@@ -178,7 +215,7 @@ public class LowerData extends ScorecardLineData {
 	    	for(int dieValue = 1; dieValue <= numberOfSides; dieValue++){
 	    		currentCount = 0;
 	    		for(int diePosition = 0; diePosition < numberOfDice; diePosition++){
-	    			if(hand_1.getDie(diePosition).getSideUp() == dieValue)
+	    			if(theValues[diePosition] == dieValue)
 	    				currentCount++;
 	    		}
 	    		if(currentCount >= 2 && dieValue != found3KValue){

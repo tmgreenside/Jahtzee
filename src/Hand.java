@@ -1,14 +1,10 @@
-//package goupproject;
-
 import java.util.ArrayList;
-
 import javax.swing.JLabel;
 
 /**
  * class responsible for storing the die values and rolling the dice.
  * 
  * @author Harvey Hartwell
- *
  */
 public class Hand {
 	private ArrayList<Die> dieValues;
@@ -30,15 +26,16 @@ public class Hand {
 			setRule();
 		}
 	}
+	
 	/**
 	 * returns a die at the specified index
 	 * @param i index of the die
 	 * @return die at index(i).
 	 */
 	public Die getDie(int i){
-			return dieValues.get(i);
-			
+			return dieValues.get(i);		
 	}
+	
 	/**
 	 * rolls each unselected die.
 	 */
@@ -100,82 +97,132 @@ public class Hand {
 	}
 	
 	/**
-	 * @return the minimum number of dice that are the same
+	 * This method sorts the values taken from the dice for use
+	 * in creating the scoring options.
+	 * @param theValuesIn
+	 * @return
 	 */
-	public int minOfAKindFound(){
-		// returns the minimum amount of numbers that are the same in the hand.
-		int minCount = handSize;
-		int currentCount;
-		for(int val=1; val <= 5; val++){
-			currentCount = 0;
-			for(int i = 0; i < handSize; i++){
-				if(dieValues.get(i).getSideUp() == val){
-					currentCount++;
+	private int[] sortValues(int[] theValuesIn) {
+		int[] theValues = theValuesIn;
+		boolean swapped;
+		do {
+			swapped = false;
+			for (int d = 0; d < handSize - 1; d++) {
+				if(theValues[d] > theValues[d + 1]) {
+					int temp = theValues[d];
+					theValues[d] = theValues[d + 1];
+					theValues[d + 1] = temp;
+					swapped = true;
 				}
 			}
-			if(currentCount < minCount && currentCount !=0){
-				minCount = currentCount;
-			}
-		}
-		return minCount;
+		} while(swapped);
+		return theValues;
 	}
 	
 	/**
-	 * 
-	 * @return the maximum number of dice that are the same in the hand
+	 * One of the methods that score hand, that determines the max of a
+	 * certain kind of dice in the players hand. The only modification to this
+	 * function from assignment one is using variables in the for loops so it would 
+	 * work with any size die/hand.
 	 */
-	public int maxOfAKindFound(){
-		// returns the maximum amount of numbers that are the same
+	public int maxOfAKind() {
+		int[] theValues = new int[handSize];
+		for (int i = 0; i < handSize; i++) {
+			theValues[i] = this.getDie(i).getSideUp();
+		}
+		sortValues(theValues);
 		int maxCount = 0;
 		int currentCount;
-		for(int val = 1; val <= 5; val++){
+		for (int dieValue = 1; dieValue <= handSize; dieValue++){
 			currentCount = 0;
-			for (int i = 0; i< handSize; i++){
-				if(dieValues.get(i).getSideUp() == val){
+			for (int diePosition = 0; diePosition < handSize; diePosition++){
+				if (theValues[diePosition] == dieValue)
 					currentCount++;
-				}
 			}
-			if (currentCount > maxCount){
+			if (currentCount > maxCount)
 				maxCount = currentCount;
-			}
 		}
-		return maxCount;
+		return maxCount;	
 	}
+	
 	/**
-	 * 
-	 * @return the largest number of consecutive dice
+	 * This method determines the maximum straight(sequence of consecutive dice), the only
+	 * modifications to this method from assignment one is using variables in the for
+	 * loop to allow the method to work with any amount of dice and any amount of sides
+	 * on those dice.
 	 */
-	public int maxStraightFound(){
-		// returns the maximum number of consecutive numbers in the hand.
-		int maxLength = 1;
-		int curLength = 1;
-		for (int i = 0; i < handSize-1; i++){
-			if(dieValues.get(i).getSideUp()+1 == dieValues.get(i+1).getSideUp()){
-				curLength ++;	
-			}
+	public int maxStraight() {
+		int[] theValues = new int[handSize];
+		for (int i = 0; i < handSize; i++) {
+			theValues[i] = this.getDie(i).getSideUp();
 		}
-		if (curLength > maxLength){
-			maxLength = curLength;
-		}
-		return maxLength;
+		sortValues(theValues);
+	    int maxLength = 1;
+	    int curLength = 1;
+	    for(int counter = 0; counter < (handSize - 1); counter++)
+	    {
+	        if (theValues[counter] + 1 == theValues[counter + 1]) //jump of 1
+	            curLength++;
+	        else if ((theValues[counter] + 1) < theValues[counter + 1]) //jump of >= 2
+	            curLength = 1;
+	        if (curLength > maxLength)
+	            maxLength = curLength;
+	    }
+	    return maxLength;
 	}
+	
 	/**
-	 * full house is defined as half the hand being the same value and the other half holding a different value.
-	 * @return true if a full house is found
+	 * This method determines whether a full house is found using the method
+	 * from the python file that plays a full game of yahtzee. The only thing different
+	 * about this method from the first version is that it is modified to work with any
+	 * amount of dice/ number of sides on a dice.
 	 */
-	public boolean fullHouseFound(){
-		if (handSize % 2 == 0){
-			// the handSize is an even number
-			if (minOfAKindFound() == handSize/2){
-				return true;
-			}
+	public boolean fullHouse() {
+		int[] theValues = new int[handSize];
+		for (int i = 0; i < handSize; i++) {
+			theValues[i] = this.getDie(i).getSideUp();
 		}
-		else {
-			if (minOfAKindFound() == handSize/2){
-				return true;
-			}
-		}
-		return false;
+		sortValues(theValues);
+		
+	    boolean foundFH = false;
+	    boolean found3K = false;
+	    boolean found2K = false;
+	    int currentCount ;
+	    int found3KValue = 1;
+	    maxOfAKind();
+	    if(maxOfAKind() >= 5){
+	    	foundFH = true;
+	    }
+	    if(!foundFH){
+	    	for (int dieValue = 1; dieValue <= handSize; dieValue++)
+	    	{
+	    		currentCount = 0;
+	    		for (int diePosition = 0; diePosition < handSize; diePosition++)
+	    		{
+	    			if (theValues[diePosition] == dieValue)
+	    				currentCount++;
+	    		}
+	    		if (currentCount >= 3){
+	    			found3K = true;
+	    			found3KValue = dieValue;
+	    			break;
+	    		}
+	    	}
+	    	for(int dieValue = 1; dieValue <= handSize; dieValue++){
+	    		currentCount = 0;
+	    		for(int diePosition = 0; diePosition < handSize; diePosition++){
+	    			if(theValues[diePosition] == dieValue)
+	    				currentCount++;
+	    		}
+	    		if(currentCount >= 2 && dieValue != found3KValue){
+	    			found2K = true;
+	    		}
+	    	}
+	    	if (found2K && found3K)
+	    		foundFH = true;
+	    }
+	    
+	    return foundFH;
 	}
 	
 	/**

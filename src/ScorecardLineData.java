@@ -1,5 +1,3 @@
-
-
 /**
  * The file creates the implementation for a score card line
  * used in a full game of one-player Jahtzee! that is 
@@ -40,7 +38,6 @@ public class ScorecardLineData {
 
 	/**
 	 * Gets the score at specified line.
-	 * 
 	 * @return score the score at the corresponding line
 	 */
 	public int getScore() {

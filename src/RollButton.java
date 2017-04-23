@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 /**
  * class responsible for creating the roll button. 
- * @author Harvey
+ * @author Harvey Hartwell
  * @version Last changed: 4 April 2017
  *
  */

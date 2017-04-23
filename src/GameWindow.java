@@ -1,5 +1,3 @@
-//package goupproject;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -21,6 +19,7 @@ import javax.swing.JScrollPane;
 /**
  * class responsible for displaying the UX for the final game
  * @author Harvey Hartwell
+ * @param <QuestionWindow>
  * @Version Last Changed: 4 April 2017
  * 
  */
@@ -132,6 +131,7 @@ public class GameWindow extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
 					scsb.disableAllButSelected();
+					rb.setText("Set Score");
 					ConfirmWindow cw = new ConfirmWindow(scsb.getSelectedScore(), cat1, cat2, scsb, bonus_die, rb);
 					
 				}
@@ -153,7 +153,7 @@ public class GameWindow extends JFrame{
 				rb.incrementClicked();
 				int turn = rb.getClicked() % hand.getTurns();
 				
-				if (turn == 0){
+				if (turn == 0 || rb.getText().equals("Set Score")){
 					resetRules();
 					unselectAllButtons();
 					rb.updateIsKept();

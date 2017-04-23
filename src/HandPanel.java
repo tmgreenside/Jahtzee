@@ -1,5 +1,3 @@
-//package goupproject;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -107,8 +105,7 @@ public class HandPanel extends JPanel {
 	}
 	public void updateRule(){
 		bd.updateRule();
-		bonusRule.setIcon(new ImageIcon("images/dice" + bd.getSideUp() + ".png"));
-		
+		bonusRule.setIcon(new ImageIcon("images/dice" + bd.getSideUp() + ".png"));	
 	}
 	
 	public void scoreHand(){
