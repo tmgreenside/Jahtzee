@@ -22,7 +22,7 @@ public class OpenWindowTest {
 	@Test
 	public void testSetSecondCategory() {
 		OpenWindow window = new OpenWindow();
-		String category = "Sports";
+		String category = "Entertainment";
 		window.setSecondCategory(category);
 		assertTrue(window.getSecondCategory().equals(category));
 	}
@@ -38,16 +38,8 @@ public class OpenWindowTest {
 	@Test
 	public void testGetSecondCategory() {
 		OpenWindow window = new OpenWindow();
-		String category = "Sports";
+		String category = "Entertainment";
 		window.setSecondCategory(category);
 		assertTrue(window.getSecondCategory().equals(category));
-	}
-
-	@Test
-	public void testGetRules() {
-		OpenWindow window = new OpenWindow();
-		RulesWindow rules = new RulesWindow();
-		rules.setVisible(true);
-		window.getRules();
 	}
 }

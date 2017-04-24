@@ -14,8 +14,8 @@ public class UpperDataTest {
 		ArrayList<Integer> upperScores = new ArrayList<Integer>();
 		ArrayList<Integer> nsTotal = new ArrayList<Integer>();
 		ArrayList<Integer> possibleScores = new ArrayList<Integer>();
-		int onesLine = 30;
-		int possibleScore = 20;
+		int onesLine = 0;
+		int possibleScore = 0;
 		upperScores.add(onesLine);
 		nsTotal.add(onesLine);
 		possibleScores.add(possibleScore);
@@ -46,6 +46,8 @@ public class UpperDataTest {
 		ArrayList<Integer> upperScores = new ArrayList<Integer>();
 		ArrayList<Integer> nsTotal = new ArrayList<Integer>();
 		ArrayList<Integer> possibleScores = new ArrayList<Integer>();
+		int possibleScore = 20;
+		possibleScores.add(possibleScore);
 		upper.clearPossibleScores();
 		assertTrue(upper.getPossibleScores().get(0) == 0);
 	}
@@ -63,7 +65,10 @@ public class UpperDataTest {
 			score = score * 2;
 		}
 		if (hand_1.getBonusDie().getSideUp() == 6){
-			score = score *3;
+			score = score * 3;
+		}
+		else {
+			score = score * 1;
 		}
 		possibleScores.add(score);
 		assertTrue(possibleScores.get(0) == score);

@@ -7,55 +7,6 @@ import org.junit.*;
 public class ScorecardScrollBoxTest {
 
 	@Test
-	public void testClearScoreCard() {
-		ScorecardScrollBox test = new ScorecardScrollBox();
-		ArrayList<Integer> upperScorecard = new ArrayList<Integer>();
-		ArrayList<Integer> lowerScorecard = new ArrayList<Integer>();
-
-		String LineOne = "0";
-		String LineTwo = "0";
-		String LineThree = "0";
-		String LineFour = "0";
-		String LineFive = "0";
-		String LineSix = "0";
-		String LineThreeKind = "0";
-		String LineFourKind = "0";
-		String LineSmallStraight = "0";
-		String LineLargeStraight = "0";
-		String LineFullHouse = "0";
-		String LineChance = "0";
-		String LineYahtzee = "0";
-		
-		upperScorecard.add(0, Integer.parseInt(LineOne));
-		upperScorecard.add(1, Integer.parseInt(LineTwo));
-		upperScorecard.add(2, Integer.parseInt(LineThree));
-		upperScorecard.add(3, Integer.parseInt(LineFour));
-		upperScorecard.add(4, Integer.parseInt(LineFive));
-		upperScorecard.add(5, Integer.parseInt(LineSix));
-		lowerScorecard.add(0, Integer.parseInt(LineThreeKind));
-		lowerScorecard.add(1, Integer.parseInt(LineFourKind));
-		lowerScorecard.add(2, Integer.parseInt(LineSmallStraight));
-		lowerScorecard.add(3, Integer.parseInt(LineLargeStraight));
-		lowerScorecard.add(4, Integer.parseInt(LineFullHouse));
-		lowerScorecard.add(5, Integer.parseInt(LineChance));
-		lowerScorecard.add(6, Integer.parseInt(LineYahtzee));
-		
-		assertTrue(upperScorecard.get(0) == 0);
-		assertTrue(upperScorecard.get(1) == 0);
-		assertTrue(upperScorecard.get(2) == 0);
-		assertTrue(upperScorecard.get(3) == 0);
-		assertTrue(upperScorecard.get(4) == 0);
-		assertTrue(upperScorecard.get(5) == 0);
-		assertTrue(lowerScorecard.get(0) == 0);
-		assertTrue(lowerScorecard.get(1) == 0);
-		assertTrue(lowerScorecard.get(2) == 0);
-		assertTrue(lowerScorecard.get(3) == 0);
-		assertTrue(lowerScorecard.get(4) == 0);
-		assertTrue(lowerScorecard.get(5) == 0);
-		assertTrue(lowerScorecard.get(6) == 0);
-	}
-
-	@Test
 	public void testShowScores() {
 		ScorecardScrollBox test = new ScorecardScrollBox();
 		ArrayList<Integer> upperScorecard = new ArrayList<Integer>();
