@@ -36,7 +36,8 @@ public class RollButtonTest {
 		HandPanel hp = new HandPanel(h1);
 		ScorecardScrollBox scsb = new ScorecardScrollBox();
 		RollButton button = new RollButton(hp, scsb);
-		assertTrue(button.getClicked() == 0);
+		button.incrementClicked();
+		assertTrue(button.getClicked() == 1);
 	}
 
 	@Test
