@@ -33,7 +33,7 @@ public class Hand {
 	 * @return die at index(i).
 	 */
 	public Die getDie(int i){
-			return dieValues.get(i);		
+		return dieValues.get(i);		
 	}
 	
 	/**
@@ -46,6 +46,7 @@ public class Hand {
 			}
 		}
 	}
+	
 	/** 
 	 * rolls the bonus die
 	 */

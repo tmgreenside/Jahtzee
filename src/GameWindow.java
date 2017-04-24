@@ -53,7 +53,6 @@ public class GameWindow extends JFrame{
 	 * the constructor creates each component, and then adds each one to a seperate jpanel called container.
 	 * after all the components have been added to the container, the container is then added to the GameWindow.
 	 */
-	
 	public GameWindow(String frstCat, String scndCat) {
 		// TODO Auto-generated constructor stub
 		JPanel container = new JPanel();
@@ -137,7 +136,7 @@ public class GameWindow extends JFrame{
 					rb.setClicked(hand.getTurns()-1);
 					
 					ConfirmWindow cw = new ConfirmWindow();
-					if (bonus_die.getSideUp() == 3){
+					if (bonus_die.getSideUp() == 3 || bonus_die.getSideUp() == 5){
 						cw.disableNo();
 					}
 					cw.addWindowListener(new WindowListener(){

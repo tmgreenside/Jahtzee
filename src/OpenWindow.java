@@ -34,6 +34,7 @@ public class OpenWindow extends JFrame {
 	public OpenWindow() {
 		this.setTitle("Jahtzee - Start");
 		this.setSize(500, 600);
+		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		thePanel = new JPanel(new BorderLayout());
 		thePanel.setBackground(Color.GREEN);
