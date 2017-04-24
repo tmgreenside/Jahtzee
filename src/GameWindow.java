@@ -100,6 +100,7 @@ public class GameWindow extends JFrame{
 		container.setLayout(new BorderLayout());
 		JPanel p1 = new JPanel();
 		p1.add(hp);
+		p1.add(new JLabel("Select dice you would like to keep"));
 		p1.add(rb);
 		p1.setBackground(Color.GREEN);
 		JPanel p2 = new JPanel();
